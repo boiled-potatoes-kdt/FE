@@ -24,7 +24,7 @@ const Button = ({
   createElement(
     "button",
     {
-      className: cn(`--color-${color}`, `--size-${size}`, full ? "--full" : ""),
+      className: cn(`--color-${color}`, `--size-${size}`, full && "--full"),
       type: type === "submit" ? "submit" : "button",
       disabled,
       ...props,
