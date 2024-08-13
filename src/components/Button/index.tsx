@@ -3,7 +3,7 @@ import ms from "@/utils/modifierSelector";
 import styles from "./index.module.scss";
 
 type ButtonProps = {
-  color?: "solid" | "outline";
+  color?: "solid" | "outline" | "outline--gray";
   size?: "small" | "medium" | "large";
   full?: boolean;
 } & {

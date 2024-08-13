@@ -10,20 +10,20 @@
     background-color: $blue-40;
     &:disabled {
       color: $gray-50;
-      background-color: #f8f8f8;
+      background-color: $gray-disabled;
     }
     &:hover {
       background-color: $blue-50;
     }
     &:focus {
       color: $blue-40;
-      background-color: #fff;
+      background-color: $white;
       border: 1px solid $blue-40;
     }
   }
   &--color-outline {
     color: $blue-40;
-    background-color: #fff;
+    background-color: $white;
     border: 1px solid $blue-40;
     &:disabled {
       color: $gray-60;
@@ -35,6 +35,13 @@
     &:focus {
       color: $blue-40;
       background-color: $blue-20;
+    }
+    &--gray {
+      color: $gray-70;
+      border: 1px solid $gray-30;
+      &:hover {
+        background-color: $gray-10;
+      }
     }
   }
 
