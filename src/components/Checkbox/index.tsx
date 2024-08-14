@@ -1,5 +1,3 @@
-"use client";
-
 import { InputHTMLAttributes, createElement } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 import Image from "next/image";
@@ -11,13 +9,18 @@ type CheckboxProps = {
   id: string;
   register?: UseFormRegisterReturn<string>;
   children?: React.ReactNode;
+  gap?: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 const cn = ms(styles, "checkbox");
 
-const Checkbox = ({ id, register, children, ...props }: CheckboxProps) => {
+const Checkbox = ({ id, register, children, gap, ...props }: CheckboxProps) => {
   return (
-    <label className={cn()} htmlFor={register ? register.name : ""}>
+    <label
+      className={cn()}
+      htmlFor={register ? register.name : ""}
+      style={{ gap }}
+    >
       {createElement("input", {
         type: "checkbox",
         className: cn("__input"),
