@@ -31,7 +31,7 @@ const Checkbox = ({ id, register, children, gap, ...props }: CheckboxProps) => {
       <label className={cn("__label")} htmlFor={id}>
         <Image src={iconCheckboxCheckedSrc} alt="Icon Check" />
       </label>
-      <p>{children}</p>
+      {children}
     </label>
   );
 };
