@@ -1,12 +1,8 @@
 "use client";
 
 import ms from "@/utils/modifierSelector";
-import {
-  InputHTMLAttributes,
-  createElement,
-  forwardRef,
-  useState,
-} from "react";
+import { InputHTMLAttributes, createElement, useState } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
 import IconPasswordHidden from "@/assets/icons/icon-password-hidden.svg";
 import IconPasswordVisible from "@/assets/icons/icon-password-visible.svg";
 import styles from "./index.module.scss";
@@ -14,55 +10,59 @@ import styles from "./index.module.scss";
 type InputProps = {
   label?: string;
   error?: string;
+  register?: UseFormRegisterReturn;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 const cn = ms(styles, "input-field");
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ id, label, error, type = "text", ...props }, ref) => {
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+const Input = ({
+  id,
+  label,
+  error,
+  type = "text",
+  register,
+  ...props
+}: InputProps) => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-    const togglePasswordVisibility = () => {
-      setIsPasswordVisible((prev) => !prev);
-    };
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
 
-    const inputType = type === "password" && isPasswordVisible ? "text" : type;
+  const inputType = type === "password" && isPasswordVisible ? "text" : type;
 
-    return (
-      <div className={cn("", error ? "--error" : "")}>
-        {label && (
-          <label className={styles.label} htmlFor={id}>
-            {label}
-          </label>
+  return (
+    <div className={cn("", error ? "--error" : "")}>
+      {label && (
+        <label className={styles.label} htmlFor={id}>
+          {label}
+        </label>
+      )}
+      <div className={styles["input-container"]}>
+        {createElement("input", {
+          className: styles.input,
+          id,
+          type: inputType,
+          ...register,
+          ...props,
+        })}
+        {type === "password" && (
+          <button
+            type="button"
+            className={styles["btn-toggle-pw"]}
+            onClick={togglePasswordVisibility}
+          >
+            {isPasswordVisible ? (
+              <IconPasswordHidden />
+            ) : (
+              <IconPasswordVisible />
+            )}
+          </button>
         )}
-        <div className={styles["input-container"]}>
-          {createElement("input", {
-            className: styles.input,
-            id,
-            type: inputType,
-            ref,
-            ...props,
-          })}
-          {type === "password" && (
-            <button
-              type="button"
-              className={styles["btn-toggle-pw"]}
-              onClick={togglePasswordVisibility}
-            >
-              {isPasswordVisible ? (
-                <IconPasswordHidden />
-              ) : (
-                <IconPasswordVisible />
-              )}
-            </button>
-          )}
-        </div>
-        {error && <p className={styles["error-message"]}>{error}</p>}
       </div>
-    );
-  },
-);
-
-Input.displayName = "Input";
+      {error && <p className={styles["error-message"]}>{error}</p>}
+    </div>
+  );
+};
 
 export default Input;
