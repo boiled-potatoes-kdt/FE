@@ -1,6 +1,5 @@
 .input-field {
-  @include column-flex(start, start);
-  width: 100%;
+  @include column-flex(center, start);
   min-width: 337px;
   margin-bottom: 12px;
   line-height: 1.4;
@@ -11,6 +10,7 @@
 
   .input-container {
     position: relative;
+    width: 100%;
   }
 
   .label {
@@ -22,9 +22,8 @@
     @include text-style(14, $gray-60);
     width: 100%;
     height: 50px;
-    margin-bottom: 0;
-    line-height: 50px;
     padding: 0 17px;
+    line-height: 50px;
     border: 2px solid $gray-20;
     border-radius: 8px;
 
@@ -35,7 +34,7 @@
 
   .btn-toggle-pw {
     @include pos-center-y;
-    right: 0;
+    right: 15px;
     z-index: 1;
     width: 20px;
     height: 20px;
@@ -43,14 +42,17 @@
 
   .error-message {
     @include text-style(12, $alert-red, 600);
-    display: block;
-    text-align: right;
+    margin-top: 2px;
+    margin-left: auto;
   }
 
   &--error {
     .input {
-      margin-top: 2px;
-      border-color: $alert-red;
+      border: 1px solid $alert-red;
+
+      &:focus {
+        border-color: $alert-red;
+      }
     }
   }
 }
