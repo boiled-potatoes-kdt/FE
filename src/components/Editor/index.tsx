@@ -3,15 +3,24 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
-import Strike from "@tiptap/extension-strike";
+import Toolbar from "./Toolbar";
 
-const Tiptap = () => {
+const Editor = () => {
   const editor = useEditor({
-    extensions: [StarterKit, Underline, Strike],
+    extensions: [StarterKit, Underline],
     content: "<p>Hello World! 🌎️</p>",
   });
 
-  return <EditorContent editor={editor} />;
+  if (!editor) {
+    return null;
+  }
+
+  return (
+    <>
+      <Toolbar editor={editor} />
+      <EditorContent editor={editor} />
+    </>
+  );
 };
 
-export default Tiptap;
+export default Editor;
