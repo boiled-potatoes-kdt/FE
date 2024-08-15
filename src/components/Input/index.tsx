@@ -1,4 +1,5 @@
 "use client";
+
 import ms from "@/utils/modifierSelector";
 import {
   InputHTMLAttributes,
@@ -11,9 +12,9 @@ import IconPasswordVisible from "@/assets/icons/icon-password-visible.svg";
 import styles from "./index.module.scss";
 
 type InputProps = {
-  label?: string; 
+  label?: string;
   error?: string;
-} & InputHTMLAttributes<HTMLInputElement>; 
+} & InputHTMLAttributes<HTMLInputElement>;
 
 const cn = ms(styles, "input-field");
 
@@ -22,21 +23,21 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     const togglePasswordVisibility = () => {
-      setIsPasswordVisible((prev) => !prev);  
-    }; 
+      setIsPasswordVisible((prev) => !prev);
+    };
 
     const inputType = type === "password" && isPasswordVisible ? "text" : type;
 
     return (
       <div className={cn("", error ? "--error" : "")}>
         {label && (
-          <label className={styles[label]}} htmlFor={id}>
+          <label className={styles.label} htmlFor={id}>
             {label}
           </label>
-        )} 
+        )}
         <div className={styles["input-container"]}>
           {createElement("input", {
-            className: styles[input] 
+            className: styles.input,
             id,
             type: inputType,
             ref,
@@ -45,7 +46,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           {type === "password" && (
             <button
               type="button"
-              className={styles["btn-toggle-pw"]}}
+              className={styles["btn-toggle-pw"]}
               onClick={togglePasswordVisibility}
             >
               {isPasswordVisible ? (
