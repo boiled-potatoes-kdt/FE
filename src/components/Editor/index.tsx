@@ -9,6 +9,7 @@ const Editor = () => {
   const editor = useEditor({
     extensions: [StarterKit, Underline],
     content: "<p>Hello World! 🌎️</p>",
+    immediatelyRender: false,
   });
 
   if (!editor) {
