@@ -1,4 +1,4 @@
-.tag1 {
+.tag {
   @include text-style(12, $blue-40, 600);
   display: inline-block;
   height: 20px;
@@ -13,8 +13,8 @@
   }
 
   &--color-light-blue {
-    color: $sky-blue50;
-    background-color: $sky-blue10;
+    color: $sky-blue-100;
+    background-color: $sky-blue-10;
   }
 
   &--color-light-purple {
