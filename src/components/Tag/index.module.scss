@@ -1,4 +1,4 @@
-.tag {
+.tag1 {
   @include text-style(12, $blue-40, 600);
   display: inline-block;
   height: 20px;
@@ -13,9 +13,10 @@
   }
 
   &--color-light-blue {
-    color: #18a0fb;
-    background-color: #eaf7ff;
+    color: $sky-blue50;
+    background-color: $sky-blue10;
   }
+
   &--color-light-purple {
     color: $purple-10;
     background-color: $purple-40;
@@ -27,8 +28,8 @@
   }
 
   &--color-dark-gray {
-    color: #495057;
-    background-color: #f2f2f2;
+    color: $gray-70;
+    background-color: $gray-20;
   }
 
   &--color-outline--gray {
