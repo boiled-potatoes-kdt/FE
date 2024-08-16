@@ -8,8 +8,10 @@ import IconPasswordVisible from "@/assets/icons/icon-password-visible.svg";
 import styles from "./index.module.scss";
 
 type InputProps = {
+  id: string;
   label?: string;
   error?: string;
+  full?: boolean;
   register?: UseFormRegisterReturn;
 } & InputHTMLAttributes<HTMLInputElement>;
 
@@ -20,6 +22,7 @@ const Input = ({
   label,
   error,
   type = "text",
+  full = false,
   register,
   ...props
 }: InputProps) => {
@@ -32,13 +35,13 @@ const Input = ({
   const inputType = type === "password" && isPasswordVisible ? "text" : type;
 
   return (
-    <div className={cn("", error ? "--error" : "")}>
+    <div className={cn("", error ? "--error" : "", full && "--full")}>
       {label && (
         <label className={styles.label} htmlFor={id}>
           {label}
         </label>
       )}
-      <div className={styles["input-container"]}>
+      <div className={styles["input-wrap"]}>
         {createElement("input", {
           className: styles.input,
           id,
