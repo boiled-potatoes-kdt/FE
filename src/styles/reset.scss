@@ -104,3 +104,7 @@ select {
     display: none;
   }
 }
+
+:root {
+  --alert-blue: #{$alert-blue};
+}
