@@ -17,17 +17,11 @@ type TagProps = {
 
 const cn = ms(styles, "tag");
 
-const Tag = ({
-  children,
-  color = "default",
-  shape = "squared",
-  ...props
-}: TagProps) =>
+const Tag = ({ children, color = "default", shape = "squared" }: TagProps) =>
   createElement(
     "div",
     {
       className: cn(`--color-${color}`, `--shape-${shape}`),
-      ...props,
     },
     children,
   );
