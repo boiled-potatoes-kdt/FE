@@ -8,7 +8,7 @@ import Toolbar from "./Toolbar";
 const Editor = () => {
   const editor = useEditor({
     extensions: [StarterKit, Underline],
-    content: "<p>Hello World! 🌎️</p>",
+    autofocus: true,
     immediatelyRender: false,
   });
 
