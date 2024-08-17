@@ -6,6 +6,7 @@ import IconItalic from "@/assets/icons/icon-italic.svg";
 import IconUnderline from "@/assets/icons/icon-underline.svg";
 import IconStrike from "@/assets/icons/icon-strike.svg";
 import ToolbarButton from "./ToolbarButton";
+import ToolbarImage from "./ToolbarImage";
 import styles from "./index.module.scss";
 
 const FONT_STYLES = [
@@ -56,6 +57,11 @@ const Toolbar = ({ editor }: ToolbarProps) => {
             </ToolbarButton>
           </li>
         ))}
+      </ul>
+      <ul>
+        <li>
+          <ToolbarImage editor={editor} />
+        </li>
       </ul>
     </nav>
   );
