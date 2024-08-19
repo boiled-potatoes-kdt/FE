@@ -1,0 +1,31 @@
+.category-tab {
+  border: 1px solid #000;
+  margin-bottom: 20px;
+
+  @media (max-width: $breakpoint-mobile) {
+    margin-bottom: 10px;
+  }
+
+  &__button {
+    margin-right: 10px;
+    border-radius: 20px;
+    height: 38px;
+    background-color: $white;
+    color: $black;
+    border: 1px solid $gray-20;
+    padding: 0px 16px;
+    font-size: 16px;
+    transition: 0.4s;
+
+    &--active {
+      background-color: $blue-10;
+      color: $blue-40;
+      border: 1px solid $blue-10;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      height: 36px;
+      font-size: 14px;
+    }
+  }
+}
