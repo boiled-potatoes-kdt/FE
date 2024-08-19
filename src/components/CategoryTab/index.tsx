@@ -37,18 +37,19 @@ const CategoryTab: React.FC<ICategoryTabsProps> = ({
   const activeTab = onChange ? activeTabIdx : selectedTab;
 
   return (
-    <div className={styles["category-tab"]}>
+    <ul className={styles["category-tab"]}>
       {tabs.map((tab, index) => (
-        <button
-          key={tab.id}
-          className={cn(index === activeTab && "--active")}
-          onClick={() => handleTabClick(index)}
-          type="button"
-        >
-          {tab.label}
-        </button>
+        <li key={tab.id}>
+          <button
+            className={cn(index === activeTab && "--active")}
+            onClick={() => handleTabClick(index)}
+            type="button"
+          >
+            {tab.label}
+          </button>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 

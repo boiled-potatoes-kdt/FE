@@ -1,4 +1,6 @@
 .category-tab {
+  display: flex;
+  flex-direction: row;
   margin-bottom: 20px;
 
   @media (max-width: $breakpoint-mobile) {
@@ -21,7 +23,7 @@
       background-color: $blue-10;
     }
 
-    @media (max-width: $breakpoint-mobile) {
+    @include mobile {
       height: 36px;
       font-size: 14px;
     }
