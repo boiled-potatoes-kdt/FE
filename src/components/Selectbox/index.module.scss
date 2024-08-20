@@ -33,9 +33,11 @@
       position: absolute;
       left: 0;
       top: calc(100% + 10px);
+      z-index: 1;
       width: 100%;
       padding: 16px;
       border-radius: 8px;
+      background-color: $white;
       box-shadow: $box-shadow;
 
       &__item {
