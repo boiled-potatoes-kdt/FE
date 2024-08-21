@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import IconDirectionDown from "@/assets/icons/icon-direction-down-gray.svg";
-import IconDirectionUp from "@/assets/icons/icon-direction-up-gray.svg";
+import ms from "@/utils/modifierSelector";
+import IconDirectionDown from "@/assets/icons/icon-direction-down-20.svg";
+import IconDirectionUp from "@/assets/icons/icon-direction-up-20.svg";
 import styles from "./index.module.scss";
 import Label from "../Label";
 
@@ -12,14 +13,18 @@ export type Option = {
 interface SelectProps {
   label?: string;
   placeholder?: string;
+  size?: "default" | "small" | "medium";
   options: Option[];
   selected: Option | null;
   onChange: (selection: Option) => void;
 }
 
+const cn = ms(styles, "select-wrapper");
+
 const Selectbox = ({
   label,
   placeholder,
+  size = "default",
   selected,
   options,
   onChange,
@@ -44,7 +49,7 @@ const Selectbox = ({
   };
 
   return (
-    <div className={styles["select-wrapper"]}>
+    <div className={cn(`--size-${size}`)}>
       {label && <Label htmlFor="selectbox">{label}</Label>}
       <div
         id="selectbox"
@@ -56,7 +61,11 @@ const Selectbox = ({
         aria-expanded={showOptions}
       >
         <span>{selected ? selected.optionLabel : placeholder}</span>
-        {showOptions ? <IconDirectionUp /> : <IconDirectionDown />}
+        {showOptions ? (
+          <IconDirectionUp width="100%" height="100%" />
+        ) : (
+          <IconDirectionDown width="100%" height="100%" />
+        )}
       </div>
       {showOptions && (
         <ul className={styles.option}>
