@@ -35,6 +35,8 @@ const Selectbox = ({
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       setShowOptions((prev) => !prev);
+    } else if (e.key === "Escape") {
+      setShowOptions(false);
     }
   };
 
@@ -58,13 +60,13 @@ const Selectbox = ({
         role="button"
         tabIndex={0}
         className={styles.select}
-        aria-expanded={showOptions}
+        aria-expanded={showOptions ? "true" : "false"}
       >
         <span>{selected ? selected.optionLabel : placeholder}</span>
         {showOptions ? (
-          <IconDirectionUp width="100%" height="100%" />
+          <IconDirectionUp width="20px" height="20px" />
         ) : (
-          <IconDirectionDown width="100%" height="100%" />
+          <IconDirectionDown width="20px" height="20px" />
         )}
       </div>
       {showOptions && (
