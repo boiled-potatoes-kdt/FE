@@ -1,0 +1,74 @@
+.article {
+  margin: 30px 0;
+  &__category {
+    @include text-style(14, false, 600);
+    margin-bottom: 16px;
+    line-height: 1.4;
+    &--board-community {
+      &--category-question {
+        color: $category-yellow;
+      }
+      &--category-know-how {
+        color: $category-purple;
+      }
+      &--category-accompany {
+        color: $category-mint;
+      }
+      &--category-others {
+        color: $category-pink;
+      }
+    }
+    &--board-follows {
+      &--category-blog {
+        color: $category-green;
+      }
+      &--category-instagram {
+        color: $category-purple;
+      }
+      &--category-youtube {
+        color: $category-pink;
+      }
+      &--category-tictoc {
+        color: $category-mint;
+      }
+      &--category-others {
+        color: $category-yellow;
+      }
+    }
+  }
+  &__link:hover {
+    & > h3 {
+      text-decoration: underline;
+    }
+  }
+  &__title {
+    @include text-style(16, $black, 600);
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+  &__preview {
+    @include text-style(16, $black, 400);
+    @include line-clamp(1);
+    line-height: 1.4;
+    margin-bottom: 28px;
+  }
+}
+
+.section {
+  @include flex(space-between);
+  @include text-style(14, $gray-70, 400);
+  justify-content: space-between;
+  line-height: 1.4;
+  &__list {
+    @include flex();
+    gap: 16px;
+  }
+  &__link {
+    @include flex();
+    gap: 8px;
+  }
+  &__comment-item {
+    @include flex();
+    gap: 4px;
+  }
+}
