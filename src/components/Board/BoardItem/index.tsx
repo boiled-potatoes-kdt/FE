@@ -51,7 +51,7 @@ const BoardItem = ({
         <ul className={styles.section__list}>
           <li>
             <Link href={`/profile/${userId}`} className={styles.section__link}>
-              <IconProfile width="24" height="24" viewBox="0 0 36 36" />
+              <IconProfile viewBox="0 0 36 36" />
               <p>{userNickname}</p>
             </Link>
           </li>
@@ -64,7 +64,7 @@ const BoardItem = ({
             <p>{`조회 ${viewCount.toLocaleString()}`}</p>
           </li>
           <li className={styles["section__comment-item"]}>
-            <IconComment width="16" height="16" viewBox="0 0 24 24" />
+            <IconComment viewBox="0 0 24 24" />
             <p>{commentCount.toLocaleString()}</p>
           </li>
         </ul>
