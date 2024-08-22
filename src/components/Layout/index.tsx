@@ -9,11 +9,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const isMainPage = pathname === "/";
 
   return (
-    <div
+    <main
       className={`${styles.container} ${isMainPage ? styles["main-page"] : ""}`}
     >
       {children}
-    </div>
+    </main>
   );
 };
 
