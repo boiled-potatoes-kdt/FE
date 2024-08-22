@@ -14,7 +14,7 @@ const PaginationButton = ({
 }: PaginationButtonProps) => {
   return (
     <button type="button" className={styles.button}>
-      {typeof children === "string" ? (
+      {typeof children === "string" || typeof children === "number" ? (
         <span className={span(isActive && "--active")}>{children}</span>
       ) : (
         children
