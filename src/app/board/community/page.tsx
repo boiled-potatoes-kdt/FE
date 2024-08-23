@@ -1,6 +1,8 @@
 import SideNav from "@/components/Board/SideNav";
+import Title from "@/components/Board/Title";
 import CategoryTab from "@/components/CategoryTab";
 import ListItem, { CommunityItemProps } from "@/components/Board/ListItem";
+import Pagination from "@/components/Pagination";
 import styles from "./page.module.scss";
 
 const BOARD_LIST: CommunityItemProps[] = [
@@ -30,12 +32,17 @@ const Community = () => {
     <main className={styles.main}>
       <SideNav />
       <section className={styles.section}>
-        <h2></h2>
+        <Title />
         <CategoryTab tabs={tabs} />
-        {BOARD_LIST.map((boardItem) => (
-          // eslint-disable-next-line
-          <ListItem key={boardItem.id} {...boardItem} />
-        ))}
+        <ul>
+          {BOARD_LIST.map((boardItem) => (
+            <li key={boardItem.id}>
+              {/* eslint-disable-next-line */}
+              <ListItem {...boardItem} />
+            </li>
+          ))}
+        </ul>
+        <Pagination chunkSize={10} totalPages={20} />
       </section>
     </main>
   );
