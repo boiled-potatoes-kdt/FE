@@ -1,5 +1,6 @@
-import ListItem, { CommunityItemProps } from "@/components/Board/ListItem";
+import SideNav from "@/components/Board/SideNav";
 import CategoryTab from "@/components/CategoryTab";
+import ListItem, { CommunityItemProps } from "@/components/Board/ListItem";
 
 const BOARD_LIST: CommunityItemProps[] = [
   {
@@ -25,13 +26,14 @@ const tabs = [
 
 const Community = () => {
   return (
-    <>
+    <main>
+      <SideNav />
       {BOARD_LIST.map((boardItem) => (
         // eslint-disable-next-line
         <ListItem key={boardItem.id} {...boardItem} />
       ))}
       <CategoryTab tabs={tabs} />
-    </>
+    </main>
   );
 };
 
