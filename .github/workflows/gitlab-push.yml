@@ -2,7 +2,7 @@ name: PushGitlab
 
 on:
   push:
-    branches: [ main ]
+    branches: [ hejuby-patch-1 ]
 
 jobs:
   build:
@@ -21,4 +21,5 @@ jobs:
         git config user.name "Heejun Byeon"
         git config user.email "hejuby@gmail.com"
         git remote set-url origin "https://oauth2:${token}@gitlab.com/hejuby/test.git"
-        git push origin main
+        git pull origin hejuby-patch-1
+        git push origin hejuby-patch-1
