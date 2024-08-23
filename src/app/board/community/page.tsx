@@ -1,4 +1,5 @@
-import BoardItem, { CommunityItemProps } from "@/components/Board/BoardItem";
+import ListItem, { CommunityItemProps } from "@/components/Board/ListItem";
+import CategoryTab from "@/components/CategoryTab";
 
 const BOARD_LIST: CommunityItemProps[] = [
   {
@@ -16,13 +17,20 @@ const BOARD_LIST: CommunityItemProps[] = [
   },
 ];
 
+const tabs = [
+  { id: "que", label: "질문하기" },
+  { id: "nohawoo", label: "노하우" },
+  { id: "3", label: "동행" },
+];
+
 const Community = () => {
   return (
     <>
       {BOARD_LIST.map((boardItem) => (
         // eslint-disable-next-line
-        <BoardItem key={boardItem.id} {...boardItem} />
+        <ListItem key={boardItem.id} {...boardItem} />
       ))}
+      <CategoryTab tabs={tabs} />
     </>
   );
 };

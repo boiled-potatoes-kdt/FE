@@ -21,7 +21,7 @@ export interface CommunityItemProps {
 
 const ac = ms(styles, "article__category");
 
-const BoardItem = ({
+const ListItem = ({
   boardType,
   id,
   userId,
@@ -73,4 +73,4 @@ const BoardItem = ({
   );
 };
 
-export default BoardItem;
+export default ListItem;
