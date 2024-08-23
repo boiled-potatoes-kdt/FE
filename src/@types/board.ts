@@ -57,6 +57,7 @@ export const FOLLOWS_LIST: BoardCategory[] = [
 ] as const;
 
 export const CATEGORY_LIST: Record<BoardType, BoardCategory[]> = {
+  announcement: [],
   community: COMMUNITY_LIST,
   follows: FOLLOWS_LIST,
 } as const;
