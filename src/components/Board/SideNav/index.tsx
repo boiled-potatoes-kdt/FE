@@ -18,19 +18,17 @@ const SideNav = () => {
 
   return (
     <nav className={styles.nav}>
-      <p>게시판</p>
+      <p className={styles.nav__title}>게시판</p>
       <ul className={styles.nav__list}>
         {BOARD_PATH.map((path) => {
           const href = `/board/${path.pathname}`;
 
           return (
-            <li key={path.pathname}>
-              <Link
-                href={href}
-                className={link(pathname === href && "--active")}
-              >
-                {path.text}
-              </Link>
+            <li
+              key={path.pathname}
+              className={link(pathname === href && "--active")}
+            >
+              <Link href={href}>{path.text}</Link>
             </li>
           );
         })}

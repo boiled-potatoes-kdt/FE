@@ -1,12 +1,18 @@
 .nav {
-  @include text-style(18, false, 600);
   display: flex;
   flex-direction: column;
   gap: 32px;
   margin: 16px 8px;
-  line-height: 1.2;
   @include mobile {
     flex-direction: row;
+    margin: 0;
+  }
+  &__title {
+    @include text-style(18, false, 600);
+    line-height: 1.2;
+    @include mobile {
+      display: none;
+    }
   }
   &__list {
     @include text-style(16, false, 400);
@@ -14,8 +20,14 @@
     flex-direction: column;
     gap: 32px;
     line-height: 1.4;
+    @include mobile {
+      width: 100%;
+      flex-direction: row;
+      gap: 0;
+    }
   }
   &__link {
+    @include flex();
     &--active {
       position: relative;
       color: $blue-40;
@@ -32,6 +44,18 @@
     }
     &:hover {
       color: $blue-40;
+    }
+    @include mobile {
+      flex-grow: 1;
+      padding: 13px 0;
+      &--active::after {
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 1px;
+        border: none;
+      }
     }
   }
 }

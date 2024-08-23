@@ -28,11 +28,13 @@ const Community = () => {
   return (
     <main>
       <SideNav />
-      {BOARD_LIST.map((boardItem) => (
-        // eslint-disable-next-line
-        <ListItem key={boardItem.id} {...boardItem} />
-      ))}
-      <CategoryTab tabs={tabs} />
+      <section>
+        <CategoryTab tabs={tabs} />
+        {BOARD_LIST.map((boardItem) => (
+          // eslint-disable-next-line
+          <ListItem key={boardItem.id} {...boardItem} />
+        ))}
+      </section>
     </main>
   );
 };
