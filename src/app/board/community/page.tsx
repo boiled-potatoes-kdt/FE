@@ -1,6 +1,7 @@
 import SideNav from "@/components/Board/SideNav";
 import CategoryTab from "@/components/CategoryTab";
 import ListItem, { CommunityItemProps } from "@/components/Board/ListItem";
+import styles from "./page.module.scss";
 
 const BOARD_LIST: CommunityItemProps[] = [
   {
@@ -26,9 +27,10 @@ const tabs = [
 
 const Community = () => {
   return (
-    <main>
+    <main className={styles.main}>
       <SideNav />
-      <section>
+      <section className={styles.section}>
+        <h2></h2>
         <CategoryTab tabs={tabs} />
         {BOARD_LIST.map((boardItem) => (
           // eslint-disable-next-line

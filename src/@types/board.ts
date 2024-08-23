@@ -1,4 +1,17 @@
-export type BoardType = "community" | "follows";
+export type BoardId = "A" | "B" | "C";
+
+export type BoardType = "announcement" | "community" | "follows";
+
+export type Board = {
+  boardId: BoardId;
+  boardType: BoardType;
+};
+
+export const BOARD_LIST: Board[] = [
+  { boardId: "A", boardType: "announcement" },
+  { boardId: "B", boardType: "community" },
+  { boardId: "C", boardType: "follows" },
+] as const;
 
 export type CategoryId = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 

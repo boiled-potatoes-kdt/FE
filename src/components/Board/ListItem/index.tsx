@@ -3,7 +3,7 @@ import formatDate from "@/utils/formatDate";
 import ms from "@/utils/modifierSelector";
 import IconProfile from "@/assets/icons/icon-profile.svg";
 import IconComment from "@/assets/icons/icon-comment.svg";
-import { BoardType, CategoryList, CategoryId } from "@/@types/board";
+import { BoardType, CATEGORY_LIST, CategoryId } from "@/@types/board";
 import styles from "./index.module.scss";
 
 export interface CommunityItemProps {
@@ -33,10 +33,11 @@ const ListItem = ({
   viewCount,
   commentCount,
 }: CommunityItemProps) => {
-  const category = CategoryList[boardType].find(
+  const category = CATEGORY_LIST[boardType].find(
     (categoryItem) => categoryItem.categoryId === categoryId,
   );
-  const { categoryName, categoryText } = category || CategoryList[boardType][0];
+  const { categoryName, categoryText } =
+    category || CATEGORY_LIST[boardType][0];
 
   return (
     <article className={styles.article}>
