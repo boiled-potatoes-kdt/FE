@@ -7,6 +7,7 @@
   padding: 34px 24px 22px;
   border-radius: 12px;
   background-color: $white;
+  word-break: keep-all;
 
   &__message {
     @include text-style(16);
@@ -19,7 +20,6 @@
 
     > button {
       flex-grow: 1;
-      word-break: keep-all;
     }
   }
 
