@@ -22,4 +22,4 @@ jobs:
         git config user.email "hejuby@gmail.com"
         git remote set-url origin "https://oauth2:${token}@gitlab.com/goodlaw.co.kr/dain_review_fastcampus_group6_new.git"
         git checkout -b frontend
-        git push gitlab frontend
+        git push origin frontend
