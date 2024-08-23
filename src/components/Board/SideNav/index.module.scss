@@ -27,7 +27,6 @@
     }
   }
   &__link {
-    @include flex();
     &--active {
       position: relative;
       color: $blue-40;
@@ -46,6 +45,7 @@
       color: $blue-40;
     }
     @include mobile {
+      @include flex();
       flex-grow: 1;
       padding: 13px 0;
       &--active::after {
