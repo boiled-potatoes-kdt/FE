@@ -1,0 +1,9 @@
+.button {
+  position: fixed;
+  right: calc((100% - 1400px) / 2 - 170px);
+  transition: 0.4s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
