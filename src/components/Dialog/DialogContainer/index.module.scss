@@ -1,13 +1,15 @@
 .dialog {
-  @include pos-center(fixed);
-  @include column-flex(between, stretch);
-  gap: 26px;
-  max-width: 338px;
-  width: 100%;
-  padding: 34px 24px 22px;
-  border-radius: 12px;
-  background-color: $white;
-  word-break: keep-all;
+  &-container {
+    @include pos-center(fixed);
+    @include column-flex(between, stretch);
+    gap: 26px;
+    max-width: 338px;
+    width: 100%;
+    padding: 34px 24px 22px;
+    border-radius: 12px;
+    background-color: $white;
+    word-break: keep-all;
+  }
 
   &__message {
     @include text-style(16);
