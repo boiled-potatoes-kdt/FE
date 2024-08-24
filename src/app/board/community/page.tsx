@@ -1,6 +1,7 @@
 import SideNav from "@/components/Board/SideNav";
 import Title from "@/components/Board/Title";
 import CategoryTab from "@/components/CategoryTab";
+import Search from "@/components/Board/Search";
 import ListItem, { CommunityItemProps } from "@/components/Board/ListItem";
 import Pagination from "@/components/Pagination";
 import styles from "./page.module.scss";
@@ -34,6 +35,7 @@ const Community = () => {
       <section className={styles.section}>
         <Title />
         <CategoryTab tabs={tabs} />
+        <Search />
         <ul>
           {BOARD_LIST.map((boardItem) => (
             <li key={boardItem.id}>
