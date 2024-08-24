@@ -53,9 +53,9 @@ const Input = ({
             onClick={handleTogglePasswordIcon}
           >
             {isPasswordVisible ? (
-              <IconPasswordHidden />
-            ) : (
               <IconPasswordVisible />
+            ) : (
+              <IconPasswordHidden />
             )}
           </button>
         )}
