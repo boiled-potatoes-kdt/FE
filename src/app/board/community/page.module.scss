@@ -5,6 +5,7 @@
   margin-bottom: 68px;
   @include mobile {
     flex-direction: column;
+    gap: 16px;
   }
   &__section {
     max-width: 926px;
@@ -25,6 +26,9 @@
   flex-direction: row-reverse;
   align-items: center;
   @include mobile {
+    width: 100%;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
 }
