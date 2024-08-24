@@ -6,6 +6,7 @@ import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import MobileGnb from "@/components/MobileGnb";
+import Dialog from "@/components/Dialog";
 
 export const metadata: Metadata = {
   title: "다인리뷰",
@@ -26,6 +27,8 @@ const RootLayout = ({
         <FloatingKakaoButton />
         <Footer />
         <MobileGnb />
+        <Dialog />
+        <div id="dialog" />
       </body>
     </html>
   );
