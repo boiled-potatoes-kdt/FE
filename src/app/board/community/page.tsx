@@ -32,10 +32,14 @@ const Community = () => {
   return (
     <main className={styles.main}>
       <SideNav />
-      <section className={styles.section}>
+      <section className={styles.main__section}>
         <Title />
-        <CategoryTab tabs={tabs} />
-        <Search />
+        <section className={styles["control-section"]}>
+          <nav className={styles["search-nav"]}>
+            <Search />
+            <CategoryTab tabs={tabs} />
+          </nav>
+        </section>
         <ul>
           {BOARD_LIST.map((boardItem) => (
             <li key={boardItem.id}>

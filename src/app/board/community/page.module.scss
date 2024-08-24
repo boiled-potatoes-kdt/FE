@@ -6,11 +6,25 @@
   @include mobile {
     flex-direction: column;
   }
+  &__section {
+    max-width: 926px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 }
 
-.section {
-  max-width: 926px;
+.control-section {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-nav {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  @include mobile {
+    flex-direction: column;
+  }
 }

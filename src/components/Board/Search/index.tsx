@@ -13,7 +13,7 @@ const Search = () => {
         className={styles.form__button}
         aria-label="게시판 검색"
       >
-        <IconSearch />
+        <IconSearch viewBox="0 0 24 24" />
       </button>
     </form>
   );
