@@ -8,10 +8,9 @@ const AnnouncementItem = ({
   title,
   date,
   viewCount,
-  key,
-}: CommunityItemProps & { key: number | string }) => {
+}: CommunityItemProps) => {
   return (
-    <li key={key} className={styles.item}>
+    <li className={styles.item}>
       <Link className={styles.item__link} href={`/announcement/${id}`}>
         <h3>{title}</h3>
       </Link>

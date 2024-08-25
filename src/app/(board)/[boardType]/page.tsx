@@ -1,4 +1,6 @@
 import { promises as fs } from "fs";
+import { notFound } from "next/navigation";
+import { z } from "zod";
 import Title from "@/components/Board/Title";
 import Search from "@/components/Board/Search";
 import CategoryTab from "@/components/CategoryTab";
@@ -7,8 +9,10 @@ import Line from "@/components/Line";
 import ListItem, { CommunityItemProps } from "@/components/Board/ListItem";
 import AnnouncementItem from "@/components/Board/AnnouncementItem";
 import Pagination from "@/components/Pagination";
-import { BoardType, CATEGORY_LIST } from "@/@types/board";
+import { BoardType, BOARD_TYPE, CATEGORY_LIST } from "@/@types/board";
 import styles from "./page.module.scss";
+
+const BoardSchema = z.enum(BOARD_TYPE);
 
 const Board = async ({
   params,
@@ -17,6 +21,10 @@ const Board = async ({
   params: { boardType: BoardType };
   searchParams: Record<string, string>;
 }) => {
+  if (!BoardSchema.safeParse(params.boardType).success) {
+    notFound();
+  }
+
   const response = await fs.readFile(
     process.cwd().toString().concat("/public/mockData.json"),
     "utf8",

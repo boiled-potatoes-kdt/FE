@@ -32,8 +32,7 @@ const ListItem = ({
   date,
   viewCount,
   commentCount,
-  key,
-}: CommunityItemProps & { key: number | string }) => {
+}: CommunityItemProps) => {
   const category = CATEGORY_LIST[boardType].find(
     (categoryItem) => categoryItem.categoryId === categoryId,
   );
@@ -41,7 +40,7 @@ const ListItem = ({
     category || CATEGORY_LIST[boardType][0];
 
   return (
-    <li key={key} className={styles.li}>
+    <li className={styles.li}>
       <p className={ac(`--board-${boardType}--category-${categoryType}`)}>
         {categoryName}
       </p>
