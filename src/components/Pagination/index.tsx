@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
 import createPaginationArray from "@/utils/createPaginationArray";
 import IconDirectionLeft from "@/assets/icons/icon-direction-left-white.svg";
 import IconDirectionRight from "@/assets/icons/icon-direction-right-white.svg";
@@ -9,14 +6,19 @@ import PaginationButton from "./PaginationButton";
 import styles from "./index.module.scss";
 
 interface PaginationProps {
+  pathname: string;
+  searchParams: Record<string, string>;
   chunkSize: number;
   totalPages: number;
 }
 
-const Pagination = ({ chunkSize, totalPages }: PaginationProps) => {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const currentPage = Number(searchParams.get("page")) || 1;
+const Pagination = ({
+  pathname,
+  searchParams,
+  chunkSize,
+  totalPages,
+}: PaginationProps) => {
+  const currentPage = Number(searchParams.page) || 1;
 
   const filterPageNumber = (pageNumber: number | string) => {
     if (Number(pageNumber) < 1) {
