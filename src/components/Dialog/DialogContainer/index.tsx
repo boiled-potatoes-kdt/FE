@@ -22,7 +22,7 @@ const DialogContainer: React.FC<DialogContainerProps> = ({
     <div className={cn("-dim")} onClick={onCancel} aria-hidden="true" />
     <div className={cn("-container")}>
       {message && <p className={styles.dialog__message}>{message}</p>}
-      <div className={cn("__button-wrapper")}>
+      <div className={cn("__button-container")}>
         {type !== "alert" && (
           <Button type="button" onClick={onCancel} color="outline--gray">
             취소

@@ -16,7 +16,7 @@
     text-align: center;
   }
 
-  &__button-wrapper {
+  &__button-container {
     @include flex(between);
     gap: 10px;
 
