@@ -17,7 +17,7 @@ const Board = async ({
   searchParams: Record<string, string>;
 }) => {
   const response = await fetch(
-    `http://127.0.0.1:3000/api/board/${params.boardType}`,
+    `http://${process.env.NODE_ENV === "development" ? "127.0.0.1:3000" : "g6.dainreview.kr"}/api/board/${params.boardType}`,
   );
   const data: CommunityItemProps[] = await response.json();
 
