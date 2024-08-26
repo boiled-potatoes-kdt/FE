@@ -16,7 +16,7 @@ import UserInfo from "./UserInfo";
 import MobileMenu from "./MobileMenu";
 
 const Header = () => {
-  const [isTablet, setIsTablet] = useState(window.innerWidth <= 1024);
+  const [isTablet, setIsTablet] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
   const router = useRouter();
@@ -27,9 +27,17 @@ const Header = () => {
   const toggleMenu = () => setShowMenu((prev) => !prev);
 
   useEffect(() => {
-    const handleResize = () => setIsTablet(window.innerWidth <= 1024);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const screenWidth = () => {
+      if (window.innerWidth <= 1024) {
+        setIsTablet(true);
+      } else {
+        setIsTablet(false);
+      }
+    };
+    screenWidth();
+
+    window.addEventListener("resize", screenWidth);
+    return () => window.removeEventListener("resize", screenWidth);
   }, []);
 
   useEffect(() => {
