@@ -4,6 +4,7 @@ import Title from "@/components/Board/Title";
 import Line from "@/components/Line";
 import AnnouncementTitle from "@/components/Board/AnnouncementTitle";
 import PostTitle from "@/components/Board/PostTitle";
+import PostContent from "@/components/Board/PostContent";
 import mockData from "@/assets/mockData.json";
 
 const Post = async ({
@@ -27,6 +28,7 @@ const Post = async ({
       ) : (
         <PostTitle post={post} />
       )}
+      <PostContent content={post.content} />
     </>
   );
 };
