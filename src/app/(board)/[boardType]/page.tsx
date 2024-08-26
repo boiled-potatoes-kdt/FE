@@ -9,9 +9,6 @@ import Pagination from "@/components/Pagination";
 import { BoardType, CATEGORY_LIST } from "@/@types/board";
 import styles from "./page.module.scss";
 
-// 추후 API 연결 후 변경 예정
-export const dynamic = "force-dynamic";
-
 const Board = async ({
   params,
   searchParams,
@@ -20,7 +17,7 @@ const Board = async ({
   searchParams: Record<string, string>;
 }) => {
   const response = await fetch(
-    `http://localhost:3000/api/board/${params.boardType}`,
+    `http://127.0.0.1:3000/api/board/${params.boardType}`,
   );
   const data: CommunityItemProps[] = await response.json();
 
