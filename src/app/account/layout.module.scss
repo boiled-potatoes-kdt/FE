@@ -3,18 +3,17 @@
     padding-top: 50px;
     padding-bottom: 168px;
     width: 100%;
-    background: url("/images/bg-account-cover1.jpg") no-repeat left bottom /
-      contain;
+    background: url("/images/bg-account.jpg") no-repeat left bottom / contain;
     background-attachment: fixed;
   }
 
   &__form-container {
-    @include column-flex;
+    @include column-flex(between, stretch);
     max-width: 407px;
     width: 100%;
     min-height: 765px;
     margin-left: auto;
-    padding: 35px;
+    padding: 120px 35px 45px;
     border-radius: 20px;
     background-color: $white;
     box-shadow: $box-shadow;
