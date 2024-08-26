@@ -2,6 +2,7 @@ import { BoardType } from "@/@types/board";
 import { CommunityItemProps } from "@/components/Board/ListItem";
 import Title from "@/components/Board/Title";
 import Line from "@/components/Line";
+import AnnouncementTitle from "@/components/Board/AnnouncementTitle";
 import PostTitle from "@/components/Board/PostTitle";
 
 const Post = async ({
@@ -23,7 +24,11 @@ const Post = async ({
     <>
       <Title boardType={params.boardType} />
       <Line />
-      <PostTitle post={post} />
+      {params.boardType === "announcement" ? (
+        <AnnouncementTitle post={post} />
+      ) : (
+        <PostTitle post={post} />
+      )}
     </>
   );
 };
