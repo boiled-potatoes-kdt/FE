@@ -4,7 +4,7 @@ import { useState } from "react";
 import Button from "@/components/Button";
 import styles from "./index.module.scss";
 
-const CommentInput = ({ id = "comment" }: { id: string }) => {
+const CommentInput = ({ id = "comment" }: { id?: string }) => {
   const [comment, setComment] = useState<string>("");
 
   return (

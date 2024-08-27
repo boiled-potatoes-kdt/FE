@@ -1,0 +1,44 @@
+.comment {
+  padding: 20px;
+  display: flex;
+  gap: 12px;
+  &__profile {
+    & > svg {
+      width: 36px;
+      height: 36px;
+    }
+  }
+  &__top {
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__text {
+    @include text-style(16, false, 400);
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  &__username {
+    @include text-style(16, false, 600);
+    line-height: 1.4;
+  }
+  &__date {
+    @include text-style(14, $gray-60, 400);
+    line-height: 1.4;
+  }
+}
+
+.reply-button {
+  @include text-style(14, $gray-70, 400);
+  line-height: 1.4;
+  &:hover {
+    color: $gray-80;
+  }
+}

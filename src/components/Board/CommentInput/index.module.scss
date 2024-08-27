@@ -8,9 +8,7 @@
     padding: 20px;
     border: 1px solid $gray-40;
     border-radius: 8px;
-    &::placeholder {
-      top: 0;
-    }
+    resize: none;
   }
   & > button {
     margin-left: auto;
