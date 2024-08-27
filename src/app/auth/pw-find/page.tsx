@@ -1,6 +1,7 @@
 import PasswordFind from "@/components/Account/PasswordFind";
 
-const Login = () => {
+const pwFindPage = () => {
   return <PasswordFind />;
 };
-export default Login;
+
+export default pwFindPage;

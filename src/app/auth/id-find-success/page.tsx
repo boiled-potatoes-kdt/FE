@@ -1,6 +1,7 @@
 import IdFindSuccess from "@/components/Account/IdFindSuccess";
 
-const Login = () => {
+const IdFindSuccessPage = () => {
   return <IdFindSuccess />;
 };
-export default Login;
+
+export default IdFindSuccessPage;

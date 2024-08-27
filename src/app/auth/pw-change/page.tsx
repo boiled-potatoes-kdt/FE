@@ -1,6 +1,7 @@
 import PasswordChange from "@/components/Account/PasswordChange";
 
-const Login = () => {
+const PwChangePage = () => {
   return <PasswordChange />;
 };
-export default Login;
+
+export default PwChangePage;
