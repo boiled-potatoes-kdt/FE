@@ -24,7 +24,6 @@ interface CertificationResponse {
   imp_uid: string;
   error_code?: string;
   error_msg?: string;
-  // 필요한 경우 더 많은 필드를 추가할 수 있습니다.
 }
 
 // 전역적으로 IMP 객체를 추가
@@ -33,7 +32,6 @@ declare let window: IamportWindow;
 const Authentication = () => {
   const Certification = async (): Promise<void> => {
     try {
-      // IMP_CODE와 MID는 각각 실제 값으로 대체해야 합니다.
       const IMP_CODE = process.env.NEXT_PUBLIC_IMP_CODE;
       const MID = process.env.NEXT_PUBLIC_MID;
 
@@ -57,8 +55,8 @@ const Authentication = () => {
           if (resp.success) {
             // 성공적인 인증 처리
             console.log("인증 성공:", resp.imp_uid);
-            // 백엔드에서 만든 본인인증 조회 api에 uid 값을 넣어서 호출한다.
-            // 여기에 성공 시 서버 호출 로직을 추가하세요.
+            // 백엔드에서 만든 본인인증 조회 api에 uid 값을 넣어서 호출
+            // 여기에 성공 시 서버 호출 로직을 추가
           } else {
             // 인증 실패 처리
             console.error("인증 실패:", resp.error_msg);
