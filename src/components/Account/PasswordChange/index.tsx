@@ -1,5 +1,6 @@
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+import Link from "next/link";
 import styles from "./index.module.scss";
 
 const PasswordChange = () => {
@@ -20,9 +21,11 @@ const PasswordChange = () => {
         />
       </form>
       <div className={styles["button-container"]}>
-        <Button size="medium" full>
-          확인
-        </Button>
+        <Link href="/">
+          <Button size="medium" full>
+            확인
+          </Button>
+        </Link>
       </div>
     </section>
   );

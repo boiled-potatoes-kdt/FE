@@ -23,26 +23,28 @@ const Login = () => {
       </form>
       <ul className={styles["link-container"]}>
         <li>
-          <Link href="/account/signup">아이디 찾기</Link>
+          <Link href="/auth/id-find">아이디 찾기</Link>
         </li>
         <li>
-          <Link href="/account/login">비밀번호 찾기</Link>
+          <Link href="/auth/pw-find">비밀번호 찾기</Link>
         </li>
       </ul>
       <div className={styles["social-container"]}>
-        <h3>소셜계정 로그인</h3>
+        <h3>
+          <span>소셜계정 로그인</span>
+        </h3>
         <ul className={styles.social__list}>
           <li>
             <Link
-              href="/account/signup"
+              href="/"
               className={`${styles.social__item} ${styles["social__item-kakao"]}`}
             >
-              <IconKakao width="22px" height="23px" />
+              <IconKakao width="19px" height="19px" />
             </Link>
           </li>
           <li>
             <Link
-              href="/account/signup"
+              href="/"
               className={`${styles.social__item} ${styles["social__item-naver"]}`}
             >
               <IconNaver width="19px" height="19px" />
@@ -50,7 +52,7 @@ const Login = () => {
           </li>
           <li>
             <Link
-              href="/account/signup"
+              href="/"
               className={`${styles.social__item} ${styles["social__item-google"]}`}
             >
               <IconGoogle width="30px" height="30px" />
@@ -60,7 +62,8 @@ const Login = () => {
       </div>
 
       <p className={styles["signiup-text"]}>
-        아직 회원가입을 안하셨다면? <Link href="/">회원가입하기</Link>
+        아직 회원가입을 안하셨다면?{" "}
+        <Link href="/auth/signup">회원가입하기</Link>
       </p>
     </section>
   );

@@ -1,6 +1,8 @@
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+import Link from "next/link";
 import styles from "./index.module.scss";
+import Authentication from "../Authentication";
 
 const PasswordFind = () => {
   return (
@@ -14,13 +16,18 @@ const PasswordFind = () => {
         <Input id="email" type="email" label="이메일" full />
         <Input id="email" type="text" label="이름" full />
       </form>
+      <Authentication />
       <div className={styles["button-container"]}>
-        <Button size="medium" full>
-          다음
-        </Button>
-        <Button size="medium" color="outline" full>
-          아이디 찾기
-        </Button>
+        <Link href="/auth/pw-change">
+          <Button size="medium" full>
+            다음
+          </Button>
+        </Link>
+        <Link href="/auth/id-find">
+          <Button size="medium" color="outline" full>
+            아이디 찾기
+          </Button>
+        </Link>
       </div>
     </section>
   );

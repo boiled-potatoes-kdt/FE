@@ -1,5 +1,6 @@
 import IconCheck from "@/assets/icons/icon-check-id-find.svg";
 import Button from "@/components/Button";
+import Link from "next/link";
 import styles from "./index.module.scss";
 
 const IdFindSuccess = () => {
@@ -14,12 +15,16 @@ const IdFindSuccess = () => {
         <p>gam**08@gmail.com</p>
       </div>
       <div className={styles["button-container"]}>
-        <Button size="medium" full>
-          로그인
-        </Button>
-        <Button size="medium" color="outline" full>
-          비밀번호 찾기
-        </Button>
+        <Link href="/auth/login">
+          <Button size="medium" full>
+            로그인
+          </Button>
+        </Link>
+        <Link href="/auth/pw-find">
+          <Button size="medium" color="outline" full>
+            비밀번호 찾기
+          </Button>
+        </Link>
       </div>
     </section>
   );

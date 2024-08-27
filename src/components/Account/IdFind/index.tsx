@@ -1,6 +1,8 @@
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+import Link from "next/link";
 import styles from "./index.module.scss";
+import Authentication from "../Authentication";
 
 const IdFind = () => {
   return (
@@ -11,13 +13,18 @@ const IdFind = () => {
       <form className={styles.form}>
         <Input id="email" type="text" label="이름" full />
       </form>
+      <Authentication />
       <div className={styles["button-container"]}>
-        <Button size="medium" full>
-          확인
-        </Button>
-        <Button size="medium" color="outline" full>
-          비밀번호 찾기
-        </Button>
+        <Link href="/auth/id-find-success">
+          <Button size="medium" full>
+            확인
+          </Button>
+        </Link>
+        <Link href="/auth/pw-find">
+          <Button size="medium" color="outline" full>
+            비밀번호 찾기
+          </Button>
+        </Link>
       </div>
     </section>
   );
