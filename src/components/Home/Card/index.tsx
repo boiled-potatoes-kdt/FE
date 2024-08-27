@@ -9,6 +9,7 @@ import IconPointCoin from "@/assets/icons/icon-point-coin.svg";
 import IconBadgeLg from "@/assets/icons/icon-premium-badge-lg.svg";
 import IconBadgeMd from "@/assets/icons/icon-premium-badge-md.svg";
 import Tag from "@/components/Tag";
+import formatDate from "@/utils/formatDate";
 import styles from "./index.module.scss";
 
 import testImg from "../../../../public/images/thumb-bg1.jpg";
@@ -16,8 +17,21 @@ const cn = ms(styles, "card-wrap");
 
 interface ICardProps {
   type?: "horizontal" | "vertical";
+  card?: {
+    name: string;
+    region1: string;
+    region2: string;
+    reward: string;
+    experience_start_date: string;
+    experience_end_date: string;
+    point: number;
+    type: string;
+    applicant: number;
+    capacity: number;
+  };
 }
-const Card: React.FC<ICardProps> = ({ type = "vertical" }) => {
+const Card: React.FC<ICardProps> = ({ type = "vertical", card }) => {
+  if (!card) return null;
   return (
     <div className={cn(`--${type}`)}>
       <div className={styles["image-content"]}>
@@ -25,7 +39,7 @@ const Card: React.FC<ICardProps> = ({ type = "vertical" }) => {
         {type === "vertical" && (
           <div className={styles["like-info"]}>
             <p>
-              100,000
+              {card.point}
               <span>
                 <IconPointCoin />
               </span>
@@ -46,17 +60,22 @@ const Card: React.FC<ICardProps> = ({ type = "vertical" }) => {
               </button>
             )}
           </h4>
-          <h3>[부산/송정] 홀리라운지</h3>
-          <p>3만원 식사권(파스타 택1 + 하우스와인(화이트) 1잔 필수주문)</p>
+          <h3>
+            [{card.region1}/{card.region2}] {card.name}
+          </h3>
+          <p>{card.reward}</p>
           <p>
-            <span>체험기간 : 24년 9월 1일 ~ 10월 1일</span>
+            <span>
+              체험기간 : {formatDate(card.experience_start_date, "YMD")} ~
+              {formatDate(card.experience_end_date, "YMD")}
+            </span>
           </p>
         </div>
         {type === "vertical" && <Line />}
         <div className={styles["text-content__type"]}>
           <div>
             <IconInsta />
-            <Tag>방문형</Tag>
+            <Tag>{card.type}</Tag>
             {type === "horizontal" && (
               <p className={styles["point-info"]}>
                 100,000
@@ -67,7 +86,8 @@ const Card: React.FC<ICardProps> = ({ type = "vertical" }) => {
             )}
           </div>
           <p>
-            신청 45<span> / 50명</span>
+            신청 {card.applicant}
+            <span> / {card.capacity}명</span>
           </p>
         </div>
       </div>
