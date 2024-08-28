@@ -29,4 +29,9 @@
       }
     }
   }
+
+  @include tablet {
+    margin: 20px -26px;
+    padding: 30px 26px;
+  }
 }
