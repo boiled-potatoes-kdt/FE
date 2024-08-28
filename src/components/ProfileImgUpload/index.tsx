@@ -11,7 +11,7 @@ interface ProfileImgUploadProps {
   label?: boolean;
 }
 
-const ProfileImageUpload: React.FC<ProfileImgUploadProps> = ({
+const ProfileImgUpload: React.FC<ProfileImgUploadProps> = ({
   profileImg,
   setProfileImg,
   label = false,
@@ -66,4 +66,4 @@ const ProfileImageUpload: React.FC<ProfileImgUploadProps> = ({
   );
 };
 
-export default ProfileImageUpload;
+export default ProfileImgUpload;
