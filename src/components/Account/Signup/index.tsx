@@ -42,9 +42,11 @@ const Signup = () => {
         </div>
       </form>
       <div className={styles["button-container"]}>
-        <Button size="medium" full>
-          회원가입 하기
-        </Button>
+        <Link href="/auth/">
+          <Button size="medium" full>
+            회원가입 하기
+          </Button>
+        </Link>
       </div>
       <div className={styles["social-container"]}>
         <h3>
