@@ -41,7 +41,7 @@ const Signup = () => {
           </Checkbox>
         </div>
       </form>
-      <div className={styles["button-wrapper"]}>
+      <div className={styles["button-container"]}>
         <Button size="medium" full>
           회원가입 하기
         </Button>
@@ -53,7 +53,7 @@ const Signup = () => {
         <ul className={styles.social__list}>
           <li>
             <Link
-              href="/account/signup"
+              href="/auth/signup"
               className={`${styles.social__item} ${styles["social__item-kakao"]}`}
             >
               <IconKakao width="26px" height="24px" />
@@ -62,7 +62,7 @@ const Signup = () => {
           </li>
           <li>
             <Link
-              href="/account/signup"
+              href="/auth/signup"
               className={`${styles.social__item} ${styles["social__item-naver"]}`}
             >
               <IconNaver width="21px" height="20px" />
@@ -71,7 +71,7 @@ const Signup = () => {
           </li>
           <li>
             <Link
-              href="/account/signup"
+              href="/auth/signup"
               className={`${styles.social__item} ${styles["social__item-google"]}`}
             >
               <IconGoogle width="22px" height="22px" />
@@ -83,7 +83,7 @@ const Signup = () => {
 
       <p className={styles["signiup-text"]}>
         이미 계정이 있으신가요?
-        <Link href="/account/login">로그인</Link>
+        <Link href="/auth/login">로그인</Link>
       </p>
     </section>
   );
