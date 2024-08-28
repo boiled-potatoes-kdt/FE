@@ -31,7 +31,14 @@ const SNSInput = ({ type, ...props }: SNSInputProps) => {
   return (
     <div className={styles.sns}>
       {getSNSIcon()}
-      <Input type="text" {...props} full />
+      <Input
+        id="sns"
+        type="text"
+        placeholder={props.placeholder}
+        value={props.value}
+        onChange={props.onChange}
+        full
+      />
     </div>
   );
 };
