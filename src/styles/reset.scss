@@ -107,6 +107,10 @@ select {
   }
 }
 
+table {
+  border-collapse: collapse;
+}
+
 :root {
   --alert-blue: #{$alert-blue};
 }
