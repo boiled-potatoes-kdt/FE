@@ -70,8 +70,9 @@
 .penalty {
   &-container {
     @include text-style(12);
-    @include pos-center-x;
-
+    position: relative;
+    top: -16px;
+    left: 27px;
     max-width: 349px;
     width: 100%;
     padding: 20px;
@@ -84,7 +85,7 @@
       top: calc(100% + 160px);
     }
 
-    h4 {
+    h5 {
       @include text-style(12, $gray-60, 500);
       margin-top: 20px;
     }

@@ -19,6 +19,7 @@ const InteractionList = () => {
 
   return (
     <div>
+      <h3 className="visually-hidden">보유포인트, 찜하기, 패널티 정보</h3>
       <div className={styles.interaction__list}>
         <div className={styles.interaction__item}>
           <p className={styles.title}>
@@ -52,7 +53,7 @@ const InteractionList = () => {
       </div>
       {isOpenPenaltyModal && (
         <article className={styles["penalty-container"]}>
-          <h3 className={styles["visually-hidden"]}>패널티 정보</h3>
+          <h4 className="visually-hidden">패널티 정보</h4>
           <p className={styles.penalty__title}>
             패널티는 인플루언서, 사업주 서로간의 약속을 지키기 위한
             시스템입니다.
@@ -77,7 +78,7 @@ const InteractionList = () => {
               </tr>
             </table>
           </div>
-          <h4>패널티 사유</h4>
+          <h5>패널티 사유</h5>
           <div className={styles.penalty__type}>
             <strong>인플루언서</strong>
             <ul>
