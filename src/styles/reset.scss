@@ -13,8 +13,10 @@ html {
 }
 
 body {
+  min-width: 320px;
   margin: 0;
   font-family: $font-main;
+  color: $black;
   font-weight: 400;
   line-height: 1.2;
 }
