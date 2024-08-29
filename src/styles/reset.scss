@@ -97,6 +97,13 @@ input[type="number"]::-webkit-outer-spin-button {
   appearance: none;
 }
 
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration {
+  display: none;
+}
+
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
