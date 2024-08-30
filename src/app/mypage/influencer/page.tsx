@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Selectbox, { Option } from "@/components/Selectbox/index";
 import CampaignItemInfluencer from "@/components/Mypage/Influencer/CampaignItem";
 import CountBox from "@/components/Mypage/Influencer/CountBox";
@@ -49,6 +49,19 @@ const MypageInfluencerPage = () => {
   const [selectedItem1, setSelectedItem1] = useState<Option | null>(null);
   const [selectedItem2, setSelectedItem2] = useState<Option | null>(null);
 
+  const [isTablet, setIsTablet] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsTablet(window.innerWidth <= 1024);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className={styles.layout}>
       <h2 className="visually-hidden">마이페이지</h2>
@@ -67,6 +80,7 @@ const MypageInfluencerPage = () => {
             ]}
           />
         </section>
+        {isTablet && <div className={styles.divider} />}
         <section>
           <h3 className={styles["sub-title"]}>체험단</h3>
           <div className={styles["campaign-search"]}>
