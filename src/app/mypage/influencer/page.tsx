@@ -52,11 +52,11 @@ const MypageInfluencerPage = () => {
   return (
     <div className={styles.layout}>
       <h2 className="visually-hidden">마이페이지</h2>
-      <section className={styles["layout__left"]}>
+      <section className={styles.layout__left}>
         <ProfileBox />
         <InteractionList />
       </section>
-      <div className={styles["layout__right"]}>
+      <div className={styles.layout__right}>
         <section>
           <h3 className={styles["sub-title"]}>나의 활동</h3>
           <CountBox
