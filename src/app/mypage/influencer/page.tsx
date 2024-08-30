@@ -6,10 +6,9 @@ import CampaignItemInfluencer from "@/components/Mypage/Influencer/CampaignItem"
 import CountBox from "@/components/Mypage/Influencer/CountBox";
 import ProfileBox from "@/components/Mypage/Influencer/ProfileBox";
 import InteractionList from "@/components/Mypage/InteractionList";
-import styles from "./page.module.scss";
 import Searchbox from "@/components/Mypage/Searchbox";
-import Pagination from "@/components/Pagination";
 import CampaignEmpty from "@/components/Mypage/CampaignEmpty";
+import styles from "./page.module.scss";
 
 const campaignItems = [
   {
@@ -100,7 +99,6 @@ const MypageInfluencerPage = () => {
             <Searchbox />
           </div>
           <CampaignItemInfluencer campaignItems={campaignItems} />
-
           <CampaignEmpty />
         </section>
       </div>
