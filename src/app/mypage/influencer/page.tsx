@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Selectbox, { Option } from "@/components/Selectbox/index";
 import CampaignItemInfluencer from "@/components/Mypage/Influencer/CampaignItem";
 import CountBox from "@/components/Mypage/Influencer/CountBox";
-import ProfileBox from "@/components/Mypage/Influencer/ProfileBox";
+import ProfileBoxInfluencer from "@/components/Mypage/Influencer/ProfileBox";
 import InteractionList from "@/components/Mypage/InteractionList";
 import Searchbox from "@/components/Mypage/Searchbox";
 import CampaignEmpty from "@/components/Mypage/CampaignEmpty";
@@ -53,7 +53,7 @@ const MypageInfluencerPage = () => {
     <div className={styles.layout}>
       <h2 className="visually-hidden">마이페이지</h2>
       <section className={styles.layout__left}>
-        <ProfileBox />
+        <ProfileBoxInfluencer />
         <InteractionList />
       </section>
       <div className={styles.layout__right}>
