@@ -8,7 +8,7 @@ import Button from "@/components/Button";
 import IconDirection from "@/assets/icons/icon-direction-right.svg";
 import styles from "./index.module.scss";
 
-const ProfileBox = () => {
+const ProfileBoxInfluencer = () => {
   const [profileImg, setProfileImg] = useState(
     "/images/profile-default-mypage.svg",
   );
@@ -70,4 +70,4 @@ const ProfileBox = () => {
   );
 };
 
-export default ProfileBox;
+export default ProfileBoxInfluencer;
