@@ -17,10 +17,16 @@
     margin-bottom: 20px;
   }
 
-  .search-container {
+  .campaign-search {
     @include flex(start);
     gap: 10px;
     padding-bottom: 4px;
+
+    .search__select {
+      @include flex(start);
+      gap: 10px;
+      min-width: 200px;
+    }
   }
 
   @include desktop {
@@ -29,12 +35,26 @@
 
   @include tablet {
     @include column-flex(start, stretch);
+    gap: 20px;
     width: 100%;
-    padding: 0;
+    padding-top: 0;
 
     &__left {
       flex-shrink: 1;
       width: 100%;
+    }
+
+    .sub-title {
+      font-size: 20px;
+    }
+
+    .campaign-search {
+      flex-flow: column-reverse;
+      align-items: flex-start;
+    }
+
+    .campaign__list {
+      margin-top: 20px;
     }
   }
 }
