@@ -33,24 +33,38 @@ interface ManageProgressProps {
 }
 
 const icon = ms(styles, "bar__icon");
+const arrow = ms(styles, "bar__arrow");
 const text = ms(styles, "caption__text");
 
 const ManageProgress = ({ activeIndex }: ManageProgressProps) => {
+  const getConditionedStyle = (
+    index: number,
+    style: (...modifiers: (string | boolean)[]) => string,
+  ) => {
+    if (index === activeIndex) {
+      return style("--active");
+    }
+
+    if (index < activeIndex) {
+      return style("--finished");
+    }
+
+    return style();
+  };
+
   return (
     <article className={styles.progress}>
       <ul className={styles.bar}>
         {PROGRESS_STEPS.map((step, index) => (
           <>
             <li>
-              <figure
-                className={activeIndex === index ? icon("--active") : icon()}
-              >
+              <figure className={getConditionedStyle(index, icon)}>
                 {step.icon()}
               </figure>
             </li>
             {index !== PROGRESS_STEPS.length - 1 && (
               <li>
-                <figure className={styles.bar__arrow}>
+                <figure className={getConditionedStyle(index, arrow)}>
                   <IconDirectionRight viewBox="0 0 24 24" />
                 </figure>
               </li>
@@ -61,9 +75,7 @@ const ManageProgress = ({ activeIndex }: ManageProgressProps) => {
       <ul className={styles.caption}>
         {PROGRESS_STEPS.map((step, index) => (
           <li key={step.text}>
-            <p className={activeIndex === index ? text("--active") : text()}>
-              {step.text}
-            </p>
+            <p className={getConditionedStyle(index, text)}>{step.text}</p>
           </li>
         ))}
       </ul>

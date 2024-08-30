@@ -31,6 +31,12 @@
         stroke: $white;
       }
     }
+    &--finished {
+      border-color: $blue-50;
+      & > svg > path {
+        stroke: $blue-50;
+      }
+    }
   }
   &__arrow {
     & > svg {
@@ -38,6 +44,11 @@
       height: 60px;
       & > path {
         stroke: $gray-30;
+      }
+    }
+    &--finished {
+      & > svg > path {
+        stroke: $blue-50;
       }
     }
   }
@@ -49,7 +60,8 @@
   &__text {
     width: 100px;
     text-align: center;
-    &--active {
+    &--active,
+    &--finished {
       color: $black;
     }
   }
