@@ -1,0 +1,60 @@
+.layout {
+  @include flex(start, start);
+  gap: 70px;
+  padding: 50px 0 76px;
+
+  &__left {
+    flex-shrink: 1;
+    width: 400px;
+  }
+
+  &__right {
+    flex-grow: 1;
+  }
+
+  .sub-title {
+    @include text-style(24, $black, 600);
+    margin-bottom: 20px;
+  }
+
+  .campaign-search {
+    @include flex(start);
+    gap: 10px;
+    padding-bottom: 4px;
+
+    .search__select {
+      @include flex(start);
+      gap: 10px;
+      min-width: 200px;
+    }
+  }
+
+  @include desktop {
+    gap: 35px;
+  }
+
+  @include tablet {
+    @include column-flex(start, stretch);
+    gap: 0px;
+    width: 100%;
+    padding-top: 0;
+
+    &__left {
+      flex-shrink: 1;
+      width: 100%;
+    }
+
+    .sub-title {
+      font-size: 20px;
+    }
+
+    .campaign-search {
+      flex-flow: column-reverse;
+      align-items: flex-start;
+    }
+
+    .campaign__list {
+      margin-top: 20px;
+    }
+  }
+}
