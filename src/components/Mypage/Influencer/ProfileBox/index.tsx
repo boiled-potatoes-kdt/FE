@@ -29,7 +29,7 @@ const ProfileBoxInfluencer = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsTablet(window.innerWidth < 1024);
+      setIsTablet(window.innerWidth <= 1024);
     };
 
     handleResize();
