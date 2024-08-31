@@ -31,7 +31,7 @@ interface TableProps {
 
 const line = ms(styles, "line");
 
-const Table = ({ head, body, order = [] }: TableProps) => {
+const Table = ({ head, body, order }: TableProps) => {
   return (
     <article className={styles.table}>
       <ul className={line("--head")}>
