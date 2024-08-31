@@ -6,13 +6,15 @@ interface GenderRadioButtonsProps {
   onChange: (value: string) => void;
   selectedValue?: string | null;
   label?: string;
+  horizontal?: boolean;
 }
 
-const GenderRadioButtons: React.FC<GenderRadioButtonsProps> = ({
+const GenderRadioButton: React.FC<GenderRadioButtonsProps> = ({
   options,
   onChange,
   selectedValue,
   label,
+  horizontal = false,
 }) => {
   const [selectedGender, setSelectedGender] = useState<string | null>(
     selectedValue || null,
@@ -24,7 +26,9 @@ const GenderRadioButtons: React.FC<GenderRadioButtonsProps> = ({
   };
 
   return (
-    <div className={styles.container}>
+    <div
+      className={`${styles.container} ${horizontal ? styles.horizontal : ""}`}
+    >
       <p className={styles.title}>{label}</p>
       <div className={styles["radio-wrapper"]}>
         {options.map((option) => (
@@ -47,4 +51,4 @@ const GenderRadioButtons: React.FC<GenderRadioButtonsProps> = ({
   );
 };
 
-export default GenderRadioButtons;
+export default GenderRadioButton;
