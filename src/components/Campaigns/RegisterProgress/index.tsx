@@ -1,12 +1,12 @@
 import IconCheck from "@/assets/icons/icon-check-blue.svg";
 import styles from "./index.module.scss";
 
-interface ProgressBarProps {
+interface RegisterProgressProps {
   currentStep: number;
   stepList: string[];
 }
 
-const RegisterProgressBar: React.FC<ProgressBarProps> = ({
+const RegisterProgress: React.FC<RegisterProgressProps> = ({
   currentStep,
   stepList,
 }) => {
@@ -41,4 +41,4 @@ const RegisterProgressBar: React.FC<ProgressBarProps> = ({
     </ul>
   );
 };
-export default RegisterProgressBar;
+export default RegisterProgress;

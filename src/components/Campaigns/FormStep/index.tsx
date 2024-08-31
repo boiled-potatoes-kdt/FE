@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 import Button from "@/components/Button";
-import VisitStep1 from "../Visit/Step1";
-import VisitStep2 from "../Visit/Step2";
-import VisitStep3 from "../Visit/Step3";
-import VisitStep4 from "../Visit/Step4";
-import VisitStep5 from "../Visit/Step5";
-import RegisterProgressBar from "../ProgressBar";
+import VisitStep1 from "../RegisterVisit/Step1";
+import VisitStep2 from "../RegisterVisit/Step2";
+import VisitStep3 from "../RegisterVisit/Step3";
+import VisitStep4 from "../RegisterVisit/Step4";
+import VisitStep5 from "../RegisterVisit/Step5";
+import RegisterProgress from "../RegisterProgress";
 import styles from "./index.module.scss";
 
 const FormStep: React.FC = () => {
@@ -36,7 +36,7 @@ const FormStep: React.FC = () => {
   return (
     <div className={styles.container}>
       <form className={styles.form}>
-        <RegisterProgressBar
+        <RegisterProgress
           currentStep={currentStep}
           stepList={steps.map((step) => step.label)}
         />
