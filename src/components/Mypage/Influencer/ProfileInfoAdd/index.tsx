@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
-import GenderRadioButton from "@/components/GenderRadioButton";
+import BoxRadioButton from "@/components/BoxRadioButton";
 import styles from "./index.module.scss";
 
 const ProfileInfoAdd = () => {
@@ -47,7 +47,7 @@ const ProfileInfoAdd = () => {
             label=" "
           />
           <Input id="date" type="date" label="생년월일" horizontal />
-          <GenderRadioButton
+          <BoxRadioButton
             options={[
               { value: "male", optionLabel: "남자" },
               { value: "female", optionLabel: "여자" },
