@@ -14,7 +14,7 @@ const VisitStep3 = () => {
   return (
     <section className={styles.container}>
       <h3 className={styles.title}>체험 정보</h3>
-      <form action="">
+      <div>
         <article className={styles.article}>
           <h4 className={styles["sub-title"]}>6. 체험 가능 요일</h4>
           <div className={styles["checkbox-container"]}>
@@ -76,7 +76,7 @@ const VisitStep3 = () => {
             📢 정확한 방문 날짜와 시간은 인플루언서와 직접 연락해서 정해주세요.
           </p>
         </article>
-      </form>
+      </div>
     </section>
   );
 };

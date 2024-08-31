@@ -11,7 +11,7 @@ const PayStep2 = () => {
   return (
     <section className={styles.container}>
       <h3 className={styles.title}>사업주 정보</h3>
-      <form action="">
+      <div>
         <article className={styles.article}>
           <h4 className={styles["sub-title"]}>
             3. 상호명 및 썸네일 이미지 등록
@@ -28,7 +28,7 @@ const PayStep2 = () => {
           <h4 className={styles["sub-title"]}>4 . 연락처</h4>
           <Input id="phone" type="number" placeholder="- 없이 입력" full />
         </article>
-      </form>
+      </div>
     </section>
   );
 };

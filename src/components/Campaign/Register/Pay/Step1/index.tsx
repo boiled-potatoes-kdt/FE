@@ -13,7 +13,7 @@ const PayStep1 = () => {
   return (
     <section className={styles.container}>
       <h3 className={styles.title}>플랫폼 유형 / 제공서비스</h3>
-      <form action="">
+      <div>
         <article className={styles.article}>
           <h4 className={styles["sub-title"]}>
             1. 광고를 원하는 플랫폼과 광고 유형, 카테고리 선택{" "}
@@ -77,7 +77,7 @@ const PayStep1 = () => {
             제공 상품명과 금액 등을 100자 이내로 입력해 주세요.
           </p>
         </article>
-      </form>
+      </div>
     </section>
   );
 };

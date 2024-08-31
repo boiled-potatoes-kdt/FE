@@ -5,7 +5,7 @@ const PayStep4 = () => {
   return (
     <section className={styles.container}>
       <h3 className={styles.title}>미션</h3>
-      <form action="">
+      <div>
         <article className={styles.article}>
           <h4 className={styles["sub-title"]}>6. 사업주 미션</h4>
           <Input
@@ -44,7 +44,7 @@ const PayStep4 = () => {
             해시태그로 사용할 키워드를 10자 이내로 적어주세요.
           </p>
         </article>
-      </form>
+      </div>
     </section>
   );
 };

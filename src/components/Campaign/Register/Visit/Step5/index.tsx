@@ -15,7 +15,7 @@ const VisitStep5 = () => {
   return (
     <section className={styles.container}>
       <h3 className={styles.title}>모집 인원 / 지급 포인트</h3>
-      <form action="">
+      <div>
         <article className={styles.article}>
           <h4 className={styles["sub-title"]}>10. 모집 인원</h4>
           <Input
@@ -65,7 +65,7 @@ const VisitStep5 = () => {
             </p>
           </div>
         </article>
-      </form>
+      </div>
     </section>
   );
 };
