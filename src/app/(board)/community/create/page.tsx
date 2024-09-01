@@ -1,7 +1,7 @@
 import PostDivider from "@/components/Board/PostDivider";
 import CategoryTab from "@/components/CategoryTab";
 import TitleInput from "@/components/Board/TitleInput";
-import Button from "@/components/Button";
+import PostControlButtons from "@/components/Board/PostControlButtons";
 import { CATEGORY_LIST } from "@/@types/board";
 import styles from "./page.module.scss";
 
@@ -18,10 +18,11 @@ const CommunityCreate = () => {
         />
       </section>
       <TitleInput />
-      <nav className={styles.control}>
-        <Button color="outline">취소</Button>
-        <Button>등록</Button>
-      </nav>
+      <PostControlButtons
+        handleClick={async () => {
+          "use server";
+        }}
+      />
     </>
   );
 };
