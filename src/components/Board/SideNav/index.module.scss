@@ -4,7 +4,7 @@
   flex-direction: column;
   gap: 32px;
   margin: 16px 8px;
-  @include mobile {
+  @include tablet {
     min-width: none;
     flex-direction: row;
     margin: 0;
@@ -12,7 +12,7 @@
   &__title {
     @include text-style(18, false, 600);
     line-height: 1.2;
-    @include mobile {
+    @include tablet {
       display: none;
     }
   }
@@ -22,7 +22,7 @@
     flex-direction: column;
     gap: 32px;
     line-height: 1.4;
-    @include mobile {
+    @include tablet {
       width: 100%;
       flex-direction: row;
       gap: 0;
@@ -48,7 +48,7 @@
     &:hover {
       color: $blue-40;
     }
-    @include mobile {
+    @include tablet {
       @include flex();
       flex-grow: 1;
       padding: 13px 0;

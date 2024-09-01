@@ -1,4 +1,3 @@
-import Title from "@/components/Board/Title";
 import Search from "@/components/Board/Search";
 import PostButton from "@/components/Board/PostButton";
 import Line from "@/components/Line";
@@ -17,7 +16,7 @@ const Board = async ({
 
   return (
     <>
-      <Title boardType="announcement" />
+      <h2 className={styles.title}>공지사항</h2>
       <section className={styles.control}>
         <nav className={styles.search}>
           <Search />
@@ -25,18 +24,20 @@ const Board = async ({
         <PostButton />
       </section>
       <Line />
-      <AnnouncementList
-        items={data.slice(
-          10 * (Number(searchParams.page || 1) - 1),
-          10 * Number(searchParams.page || 1),
-        )}
-      />
-      <Pagination
-        pathname="/announcement"
-        searchParams={searchParams}
-        chunkSize={10}
-        totalPages={Math.ceil(data.length / 10)}
-      />
+      <section className={styles.list}>
+        <AnnouncementList
+          items={data.slice(
+            10 * (Number(searchParams.page || 1) - 1),
+            10 * Number(searchParams.page || 1),
+          )}
+        />
+        <Pagination
+          pathname="/announcement"
+          searchParams={searchParams}
+          chunkSize={10}
+          totalPages={Math.ceil(data.length / 10)}
+        />
+      </section>
     </>
   );
 };

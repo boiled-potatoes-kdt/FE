@@ -1,17 +1,37 @@
+.title {
+  @include text-style(32, false, 600);
+  margin-top: 16px;
+  margin-bottom: 40px;
+  @include tablet {
+    display: none;
+  }
+}
+
 .control {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 30px;
 }
 
 .search {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  @include mobile {
+  @include tablet {
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 82px;
+  @include tablet {
+    gap: 18px;
   }
 }
