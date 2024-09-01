@@ -1,15 +1,16 @@
+"use client";
+
 import Link from "next/link";
-import { BoardType, BOARD_LIST } from "@/@types/board";
+import { usePathname } from "next/navigation";
+import { BOARD_LIST } from "@/@types/board";
 import ms from "@/utils/modifierSelector";
 import styles from "./index.module.scss";
 
-interface SideNavProps {
-  boardType: BoardType;
-}
-
 const link = ms(styles, "nav__link");
 
-const SideNav = ({ boardType }: SideNavProps) => {
+const SideNav = () => {
+  const pathname = usePathname();
+
   return (
     <nav className={styles.nav}>
       <p className={styles.nav__title}>게시판</p>
@@ -20,7 +21,9 @@ const SideNav = ({ boardType }: SideNavProps) => {
           return (
             <li
               key={board.boardId}
-              className={link(boardType === board.boardType && "--active")}
+              className={link(
+                pathname.split("/")[1] === board.boardType && "--active",
+              )}
             >
               <Link href={href}>{board.boardName}</Link>
             </li>
