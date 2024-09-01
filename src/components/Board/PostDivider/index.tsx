@@ -1,9 +1,9 @@
 import Line from "@/components/Line";
 import styles from "./index.module.scss";
 
-const PostDivider = () => {
+const PostDivider = ({ marginBottom }: { marginBottom?: string }) => {
   return (
-    <section className={styles.divider}>
+    <section className={styles.divider} style={{ marginBottom }}>
       <Line />
     </section>
   );

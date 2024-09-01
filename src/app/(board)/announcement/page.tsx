@@ -1,6 +1,6 @@
 import Search from "@/components/Board/Search";
 import PostButton from "@/components/Board/PostButton";
-import Line from "@/components/Line";
+import PostDivider from "@/components/Board/PostDivider";
 import { CommunityItemProps } from "@/components/Board/ListItem";
 import AnnouncementList from "@/components/Board/AnnouncementList";
 import Pagination from "@/components/Pagination";
@@ -16,16 +16,13 @@ const Board = async ({
 
   return (
     <>
-      <h2 className={styles.title}>공지사항</h2>
       <section className={styles.control}>
         <nav className={styles.search}>
           <Search />
         </nav>
         <PostButton />
       </section>
-      <section className={styles.divider}>
-        <Line />
-      </section>
+      <PostDivider />
       <section className={styles.list}>
         <AnnouncementList
           items={data.slice(

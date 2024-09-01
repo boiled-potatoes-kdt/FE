@@ -1,9 +1,9 @@
 import { CommunityItemProps } from "@/components/Board/ListItem";
-import Title from "@/components/Board/Title";
-import Line from "@/components/Line";
 import AnnouncementTitle from "@/components/Board/AnnouncementTitle";
 import PostContent from "@/components/Board/PostContent";
+import PostNavigation from "@/components/Board/PostNavigation";
 import mockData from "@/assets/mockData.json";
+import styles from "./page.module.scss";
 
 const Post = async ({ params }: { params: { postId: string } }) => {
   const data = mockData.announcement as CommunityItemProps[];
@@ -15,10 +15,15 @@ const Post = async ({ params }: { params: { postId: string } }) => {
 
   return (
     <>
-      <Title boardType="announcement" />
-      <Line />
-      <AnnouncementTitle post={post} />
-      <PostContent content={post.content} />
+      <section className={styles.content}>
+        <AnnouncementTitle post={post} />
+        <PostContent content={post.content} />
+      </section>
+      <PostNavigation
+        previous="/announcement/0"
+        next="/announcement/0"
+        list="/announcement"
+      />
     </>
   );
 };

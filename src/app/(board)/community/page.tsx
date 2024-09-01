@@ -1,7 +1,7 @@
 import Search from "@/components/Board/Search";
 import CategoryTab from "@/components/CategoryTab";
 import PostButton from "@/components/Board/PostButton";
-import Line from "@/components/Line";
+import PostDivider from "@/components/Board/PostDivider";
 import { CommunityItemProps } from "@/components/Board/ListItem";
 import List from "@/components/Board/List";
 import Pagination from "@/components/Pagination";
@@ -18,7 +18,6 @@ const Board = async ({
 
   return (
     <>
-      <h2 className={styles.title}>커뮤니티</h2>
       <section className={styles.control}>
         <nav className={styles.search}>
           <Search />
@@ -31,9 +30,7 @@ const Board = async ({
         </nav>
         <PostButton />
       </section>
-      <section className={styles.divider}>
-        <Line />
-      </section>
+      <PostDivider />
       <section className={styles.list}>
         <List
           items={data.slice(
