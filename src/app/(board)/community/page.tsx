@@ -31,7 +31,9 @@ const Board = async ({
         </nav>
         <PostButton />
       </section>
-      <Line />
+      <section className={styles.divider}>
+        <Line />
+      </section>
       <section className={styles.list}>
         <List
           items={data.slice(

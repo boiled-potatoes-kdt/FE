@@ -8,7 +8,7 @@ interface ListProps {
 
 const AnnouncementList = ({ items }: ListProps) => {
   return (
-    <article>
+    <article className={styles.list}>
       <aside>
         <ul className={styles.top}>
           <li className={styles.top__title}>
