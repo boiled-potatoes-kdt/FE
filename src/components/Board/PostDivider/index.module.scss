@@ -1,0 +1,6 @@
+.divider {
+  margin-bottom: 30px;
+  @include tablet {
+    display: none;
+  }
+}
