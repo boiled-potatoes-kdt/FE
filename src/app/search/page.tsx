@@ -210,7 +210,7 @@ const Search = () => {
             selectedCounty={selectedCounty}
             addCity={handleCitySelect}
             addCounty={handleCountySelect}
-            // deleteCounty={handleDeleteCounty}
+            deleteCounty={handleDeleteCounty}
           />
         )}
       </section>

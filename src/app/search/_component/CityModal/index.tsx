@@ -8,7 +8,7 @@ interface CityModalProps {
   selectedCounty: { city: string; county: string }[];
   addCity: (city: string) => void;
   addCounty: (county: string) => void;
-  // deleteCounty: (city: string, county: string) => void;
+  deleteCounty: (city: string, county: string) => void;
 }
 
 interface CityList {
@@ -23,7 +23,7 @@ const CityModal: React.FC<CityModalProps> = ({
   selectedCounty,
   addCity,
   addCounty,
-  // deleteCounty,
+  deleteCounty,
 }) => {
   const { cityOptions, countyOptions } = cityList as CityList;
 
@@ -32,7 +32,25 @@ const CityModal: React.FC<CityModalProps> = ({
   };
 
   const handleCountySelect = (county: string) => {
-    addCounty(county);
+    if (county === "전체") {
+      selectedCounty.forEach(({ city: selCity, county: selCounty }) => {
+        if (selCity === selectedCity && selCounty !== "전체") {
+          deleteCounty(selCity, selCounty);
+        }
+      });
+
+      addCounty(county);
+    } else {
+      const isOtherSelected = selectedCounty.some(
+        (selection) =>
+          selection.city === selectedCity && selection.county === "전체",
+      );
+      if (isOtherSelected) {
+        deleteCounty(selectedCity!, "전체");
+      }
+
+      addCounty(county);
+    }
   };
 
   return (
