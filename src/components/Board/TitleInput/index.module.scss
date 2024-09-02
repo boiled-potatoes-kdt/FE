@@ -9,4 +9,7 @@
   &::placeholder {
     color: $gray-50;
   }
+  @include tablet {
+    margin-bottom: 16px;
+  }
 }
