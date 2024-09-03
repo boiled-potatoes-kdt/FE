@@ -1,17 +1,33 @@
 "use client";
 
 import React from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import IconHeartGray from "@/assets/icons/icon-heart-gray.svg";
 import IconInsta from "@/assets/icons/icon-sns-instargram.svg";
 import IconPointCoin from "@/assets/icons/icon-point-coin.svg";
 import IconWarning from "@/assets/icons/icon-warning-gray-filled.svg";
+import IconRight from "@/assets/icons/icon-direction-right-gray.svg";
 import Tag from "@/components/Tag";
-// import Calendar from "react-calendar";
 import testImg from "../../../public/images/thumb-bg1.jpg";
 import styles from "./page.module.scss";
+import Customcalendar from "./_component/calendar";
 
 const Products = () => {
+  // 임시 데이터
+  const applicationStartDate = new Date("2024-08-25T10:00:00");
+  const applicationEndDate = new Date("2024-08-30T18:00:00");
+  const announcementDate = new Date("2024-08-31T10:00:00");
+  const experienceStartDate = new Date("2024-09-01T10:00:00");
+  const experienceEndDate = new Date("2024-09-05T18:00:00");
+  const reviewDate = new Date("2024-09-10T18:00:00");
+
+  const latitude: number = 37.123456;
+  const longitude: number = 126.987654;
+
+  const KakaoMap = dynamic(() => import("./_component/kakaoMap"), {
+    ssr: false,
+  });
   return (
     <div className={styles.products}>
       {/* 좌측 정보 */}
@@ -179,7 +195,32 @@ const Products = () => {
               </ul>
             </dd>
           </dl>
+          <dl>
+            <dt>방문주소</dt>
+            <dd>
+              <div className={styles.address}>
+                <p>인천 계양구 봉오대로 677번길 천사 빌딩</p>
+                <button type="button">
+                  <Tag shape="rounded">복사</Tag>
+                </button>
+              </div>
+              <div className={styles["map-wrap"]}>
+                <KakaoMap latitude={latitude} longitude={longitude} />
+              </div>
+            </dd>
+          </dl>
         </div>
+        <button className={styles["enterprise-info"]} type="button">
+          <div>
+            <div>
+              <Image src={testImg} alt="enterpriseImage" />
+            </div>
+            <p>24시 감자탕</p>
+          </div>
+          <p>
+            <IconRight />
+          </p>
+        </button>
       </section>
 
       {/* 우측 캘린더 */}
@@ -188,7 +229,16 @@ const Products = () => {
           모집기간이 <span>9일</span> 남았어요!
         </h3>
         <p>지원 30명 / 30명</p>
-        <div className={styles["calendar-wrap"]}>{/* <Calendar /> */}</div>
+        <div className={styles["calendar-wrap"]}>
+          <Customcalendar
+            applicationStartDate={applicationStartDate}
+            applicationEndDate={applicationEndDate}
+            announcementDate={announcementDate}
+            experienceStartDate={experienceStartDate}
+            experienceEndDate={experienceEndDate}
+            reviewDate={reviewDate}
+          />
+        </div>
       </section>
     </div>
   );
