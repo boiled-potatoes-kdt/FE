@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ms from "@/utils/modifierSelector";
 import IconDirectionDown from "@/assets/icons/icon-direction-down-20.svg";
 import IconDirectionUp from "@/assets/icons/icon-direction-up-20.svg";
@@ -33,6 +33,8 @@ const Selectbox = ({
 }: SelectProps) => {
   const [showOptions, setShowOptions] = useState(false);
 
+  const selectRef = useRef<HTMLDivElement>(null);
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -52,8 +54,21 @@ const Selectbox = ({
     }
   };
 
+  const handleClickOutside = (e: MouseEvent) => {
+    if (selectRef.current && !selectRef.current.contains(e.target as Node)) {
+      setShowOptions(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className={cn(`--size-${size}`)}>
+    <div ref={selectRef} className={cn(`--size-${size}`)}>
       {label && <Label htmlFor="selectbox">{label}</Label>}
       <div
         id="selectbox"
