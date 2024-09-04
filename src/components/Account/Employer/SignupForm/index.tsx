@@ -8,7 +8,7 @@ import TermsCheck from "@/components/TermsCheck";
 import styles from "./index.module.scss";
 import Authentication from "../../Authentication";
 
-const SignupEmployer = () => {
+const SignupFormEmployer = () => {
   const [selectedItem, setSelectedItem] = useState<Option | null>(null);
 
   return (
@@ -72,4 +72,4 @@ const SignupEmployer = () => {
   );
 };
 
-export default SignupEmployer;
+export default SignupFormEmployer;

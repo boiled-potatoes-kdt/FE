@@ -9,7 +9,7 @@ import TermsCheck from "@/components/TermsCheck";
 import styles from "./index.module.scss";
 import Authentication from "../../Authentication";
 
-const SignupInfluencer = () => {
+const SignupFormInfluencer = () => {
   const [selectedItem, setSelectedItem] = useState<Option | null>(null);
 
   return (
@@ -20,16 +20,24 @@ const SignupInfluencer = () => {
 
       <form className={styles.form}>
         <div className={styles["email-check"]}>
-          <Input id="email" type="email" label="이메일" full />
+          <Input id="email" type="email" label="이메일" maxLength={100} full />
           <Button size="medium" color="outline">
             중복체크
           </Button>
         </div>
         <div className={styles["password-check"]}>
-          <Input id="password" type="password" label="비밀번호" full gap={5} />
+          <Input
+            id="password"
+            type="password"
+            label="비밀번호"
+            maxLength={50}
+            full
+            gap={5}
+          />
           <Input
             id="passwordCheck"
             type="password"
+            maxLength={50}
             full
             infoMessage="8자 이상의 영문, 숫자, 특수문자 중 2가지이상"
           />
@@ -38,6 +46,7 @@ const SignupInfluencer = () => {
           id="email"
           type="text"
           label="이름"
+          maxLength={50}
           full
           infoMessage="실명으로 등록하지 않을 경우 불이익이 있을 수 있습니다."
         />
@@ -47,6 +56,7 @@ const SignupInfluencer = () => {
           type="text"
           full
           label="닉네임"
+          maxLength={10}
           infoMessage="한글, 영문, 숫자 10자까지 (커뮤니티에서 사용할 닉네임)"
         />
         <Selectbox
@@ -91,4 +101,4 @@ const SignupInfluencer = () => {
   );
 };
 
-export default SignupInfluencer;
+export default SignupFormInfluencer;
