@@ -31,15 +31,7 @@ const SNSInput = ({ type, ...props }: SNSInputProps) => {
   return (
     <div className={styles.sns}>
       {getSNSIcon()}
-      <Input
-        id="sns"
-        type="text"
-        placeholder={props.placeholder}
-        value={props.value}
-        onChange={props.onChange}
-        full
-        gap={5}
-      />
+      <Input {...props} id={props.id || "sns"} full gap={5} maxLength={300} />
     </div>
   );
 };
