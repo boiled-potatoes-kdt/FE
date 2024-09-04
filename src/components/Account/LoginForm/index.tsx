@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
+import useDialog from "@/hooks/useDialog";
 import IconKakao from "@/assets/icons/icon-kakao.svg";
 import IconNaver from "@/assets/icons/icon-naver.svg";
 import IconGoogle from "@/assets/icons/icon-google.svg";
@@ -33,17 +34,25 @@ type LoginFormProps = {
 
 const LoginForm = () => {
   const router = useRouter();
+
+  const { alert } = useDialog();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormProps>({
     resolver: zodResolver(schema),
-    mode: "onChange",
   });
 
   const onSubmit: SubmitHandler<LoginFormProps> = (data) => {
-    console.log("로그인 데이터!!!!:", data);
+    alert(JSON.stringify(data, null, 4));
+
+    // TODO: API 로직 추가하기
+  };
+
+  const onError = async () => {
+    await alert("아이디/비밀번호를 확인해주세요.");
   };
 
   const handleKakaoLogin = () => {
@@ -66,7 +75,7 @@ const LoginForm = () => {
       <header className={styles.header}>
         <h2>로그인</h2>
       </header>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit, onError)}>
         <div>
           <Input
             id="email"
