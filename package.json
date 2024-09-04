@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "axios": "^1.7.3",
     "isomorphic-dompurify": "^2.14.0",
     "moment": "^2.30.1",
