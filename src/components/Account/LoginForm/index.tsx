@@ -2,8 +2,9 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
-import * as z from "zod";
+import { loginSchema, LoginSchemaType } from "@/schemas/authSchema";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 import useDialog from "@/hooks/useDialog";
 import IconKakao from "@/assets/icons/icon-kakao.svg";
 import IconNaver from "@/assets/icons/icon-naver.svg";
@@ -12,25 +13,6 @@ import Link from "next/link";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import styles from "./index.module.scss";
-
-const schema = z.object({
-  email: z
-    .string()
-    .nonempty({ message: "이메일을 입력해주세요" })
-    .email({ message: "올바른 이메일 형식이 아닙니다." }),
-  password: z
-    .string()
-    .nonempty({ message: "비밀번호를 입력해주세요" })
-    .min(8, { message: "비밀번호는 최소 8자 이상이어야 합니다." })
-    .regex(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/, {
-      message: "비밀번호는 영문, 숫자, 특수문자를 포함해야 합니다.",
-    }),
-});
-
-type LoginFormProps = {
-  email: string;
-  password: string;
-};
 
 const LoginForm = () => {
   const router = useRouter();
@@ -41,18 +23,47 @@ const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormProps>({
-    resolver: zodResolver(schema),
+    watch,
+  } = useForm<LoginSchemaType>({
+    resolver: zodResolver(loginSchema),
+    mode: "onChange",
   });
 
-  const onSubmit: SubmitHandler<LoginFormProps> = (data) => {
-    alert(JSON.stringify(data, null, 4));
+  const emailValue = watch("email");
+  const passwordValue = watch("password");
 
-    // TODO: API 로직 추가하기
+  const onSubmit: SubmitHandler<LoginSchemaType> = async (data) => {
+    console.log(data);
+
+    try {
+      const response = await axios.post("/api/login", {
+        email: data.email,
+        password: data.password,
+      });
+
+      if (response.status === 200) {
+        const result = response.data;
+
+        if (result.success) {
+          // 로그인 성공
+          router.push("/");
+        } else {
+          // 로그인 실패
+          await alert("아이디 또는 비밀번호를 확인해주세요.");
+        }
+      } else {
+        // 상태 코드가 200이 아닌 경우
+        await alert("로그인에 실패했습니다. 다시 시도해주세요.");
+      }
+    } catch (error) {
+      // 네트워크 오류 또는 서버 오류
+      console.error("로그인 에러:", error);
+      await alert("서버에 문제가 발생했습니다. 잠시 후 다시 시도해주세요.");
+    }
   };
 
   const onError = async () => {
-    await alert("아이디/비밀번호를 확인해주세요.");
+    await alert("아이디 또는 비밀번호를 확인해주세요.");
   };
 
   const handleKakaoLogin = () => {
@@ -83,7 +94,7 @@ const LoginForm = () => {
             label="이메일"
             full
             {...register("email")}
-            error={errors.email?.message}
+            error={emailValue ? errors.email?.message : undefined}
           />
         </div>
         <div>
@@ -93,7 +104,7 @@ const LoginForm = () => {
             label="비밀번호"
             full
             {...register("password")}
-            error={errors.password?.message}
+            error={passwordValue ? errors.password?.message : undefined}
           />
         </div>
         <div className={styles["button-container"]}>
