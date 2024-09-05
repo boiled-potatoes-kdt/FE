@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { BoardType } from "@/@types/board";
 import IconKebab from "@/assets/icons/icon-kebab.svg";
@@ -23,6 +23,18 @@ const EditDropdown = ({
 }: EditDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    window.addEventListener("click", (event) => {
+      console.log(event);
+      setIsOpen(false);
+    });
+    return () => {
+      window.removeEventListener("click", () => {
+        setIsOpen(false);
+      });
+    };
+  }, []);
+
   if (type === "post" && !boardType) {
     return null;
   }
@@ -31,7 +43,8 @@ const EditDropdown = ({
     <nav className={styles.wrapper}>
       <button
         type="button"
-        onClick={() => {
+        onClick={(event) => {
+          event.stopPropagation();
           setIsOpen((prev) => !prev);
         }}
         aria-label="수정 삭제 버튼"
@@ -53,7 +66,13 @@ const EditDropdown = ({
               <button
                 type="button"
                 className={styles.dropdown__button}
-                onClick={commentEdit}
+                onClick={() => {
+                  if (!commentEdit) {
+                    return;
+                  }
+                  commentEdit();
+                  setIsOpen(false);
+                }}
               >
                 <p>수정하기</p>
                 <IconEdit viewBox="0 0 24 24" />
