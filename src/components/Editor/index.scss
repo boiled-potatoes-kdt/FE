@@ -1,3 +1,5 @@
-:root {
-  --ck-sample-editor-min-height: 1920px;
+.ck.ck-editor {
+  &__editable {
+    min-height: 1200px;
+  }
 }
