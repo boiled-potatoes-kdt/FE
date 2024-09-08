@@ -25,7 +25,7 @@ const PayStep1 = () => {
               selected={selectedPlatform}
               options={[
                 { optionLabel: "블로그", value: "blog" },
-                { optionLabel: "인스타그램", value: "instargram" },
+                { optionLabel: "인스타그램", value: "instagram" },
                 { optionLabel: "유튜브", value: "youtube" },
                 { optionLabel: "틱톡", value: "tictock" },
                 { optionLabel: "릴스", value: "reels" },

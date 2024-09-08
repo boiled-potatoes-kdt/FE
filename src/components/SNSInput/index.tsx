@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import IconBlog from "@/assets/icons/icon-sns-blog.svg";
-import IconInstargram from "@/assets/icons/icon-sns-instargram.svg";
+import IconInstagram from "@/assets/icons/icon-sns-instagram.svg";
 import IconYoutube from "@/assets/icons/icon-sns-youtube.svg";
 import IconTictok from "@/assets/icons/icon-sns-tictok.svg";
 import IconEtc from "@/assets/icons/icon-sns-etc.svg";
@@ -18,7 +18,7 @@ const SNSInput = forwardRef<HTMLInputElement, SNSInputProps>(
         case "NAVER_BLOG":
           return <IconBlog />;
         case "INSTAGRAM":
-          return <IconInstargram />;
+          return <IconInstagram />;
         case "YOUTUBE":
           return <IconYoutube />;
         case "TIKTOK":
