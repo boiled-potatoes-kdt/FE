@@ -1,6 +1,7 @@
 import PostDivider from "@/components/Board/PostDivider";
 import CategoryTab from "@/components/CategoryTab";
 import TitleInput from "@/components/Board/TitleInput";
+import Editor from "@/components/Editor";
 import PostControlButtons from "@/components/Board/PostControlButtons";
 import { CATEGORY_LIST } from "@/@types/board";
 import { CommunityItemProps } from "@/components/Board/ListItem";
@@ -27,6 +28,7 @@ const CommunityEdit = async ({ params }: { params: { postId: string } }) => {
         />
       </section>
       <TitleInput value={post.title} />
+      <Editor initialData={post.content} />
       <PostControlButtons
         handleClick={async () => {
           "use server";
