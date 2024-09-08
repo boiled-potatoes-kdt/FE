@@ -28,6 +28,7 @@ const ProfileInfluencer = () => {
             profileImg={profileImg}
             setProfileImg={setProfileImg}
             label
+            defaultImg="/images/profile-default.png"
           />
         </div>
         <Input id="date" type="date" label="생년월일" full />
