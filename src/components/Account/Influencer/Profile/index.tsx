@@ -98,10 +98,10 @@ const ProfileInfluencer = () => {
   };
 
   const handleCancelClick = async () => {
-    const confirmCancel = await new Promise((resolve) => {
-      confirm("작성 중인 내용이 사라집니다. 계속하시겠습니까?");
-      resolve(null);
-    });
+    const confirmCancel = await confirm(
+      "작성 중인 내용이 사라집니다. 계속하시겠습니까?",
+    );
+
     if (confirmCancel) {
       router.push("/auth/login");
     }
