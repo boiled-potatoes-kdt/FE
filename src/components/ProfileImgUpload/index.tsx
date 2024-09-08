@@ -2,15 +2,15 @@ import Image from "next/image";
 import ms from "@/utils/modifierSelector";
 import useDialog from "@/hooks/useDialog";
 import IconCamera from "@/assets/icons/icon-profile-camera.svg";
-import React, { useRef, ChangeEvent, useState } from "react";
+import React, { useRef, ChangeEvent, useState, useEffect } from "react";
 import styles from "./index.module.scss";
 import Button from "../Button";
 
 const cn = ms(styles, "profile-img");
 
 interface ProfileImgUploadProps {
-  profileImg: string;
-  setProfileImg: React.Dispatch<React.SetStateAction<string>>;
+  profileImg: File | null;
+  setProfileImg: React.Dispatch<React.SetStateAction<File | null>>;
   defaultImg: string;
   label?: boolean;
   cameraButon?: boolean;
@@ -24,10 +24,24 @@ const ProfileImgUpload: React.FC<ProfileImgUploadProps> = ({
   cameraButon = false,
 }) => {
   const fileInput = useRef<HTMLInputElement | null>(null);
+  const [previewImg, setPreviewImg] = useState<string>(defaultImg);
   const [isUpload, setIsUpload] = useState(false);
   const [isDrag, setIsDrag] = useState(false);
 
   const { alert } = useDialog();
+
+  useEffect(() => {
+    if (profileImg) {
+      const objectUrl = URL.createObjectURL(profileImg);
+      setPreviewImg(objectUrl);
+
+      return () => URL.revokeObjectURL(objectUrl);
+    }
+
+    setPreviewImg(defaultImg);
+
+    return () => {};
+  }, [profileImg, defaultImg]);
 
   const handleProfileImg = async (file: File) => {
     const maxFileSize = 10 * 1024 * 1024;
@@ -53,16 +67,8 @@ const ProfileImgUpload: React.FC<ProfileImgUploadProps> = ({
       return;
     }
 
-    // 이미지 화면에 띄우기
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-
-    reader.onload = (event) => {
-      if (reader.readyState === 2 && event.target) {
-        setProfileImg(event.target.result as string);
-        setIsUpload(true);
-      }
-    };
+    setProfileImg(file);
+    setIsUpload(true);
   };
 
   // Drag & Drop
@@ -91,7 +97,7 @@ const ProfileImgUpload: React.FC<ProfileImgUploadProps> = ({
   };
 
   const handleResetImg = () => {
-    setProfileImg(defaultImg);
+    setProfileImg(null);
     setIsUpload(false);
   };
 
@@ -109,7 +115,7 @@ const ProfileImgUpload: React.FC<ProfileImgUploadProps> = ({
         aria-label="이미지 업로드"
         className={styles["img-upload-button"]}
       >
-        <Image src={profileImg} width={95} height={95} alt="프로필 이미지" />
+        <Image src={previewImg} width={95} height={95} alt="프로필 이미지" />
       </button>
 
       <input
