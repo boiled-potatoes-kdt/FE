@@ -1,8 +1,6 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { loginSchema, LoginSchemaType } from "@/schemas/authSchema";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import useDialog from "@/hooks/useDialog";
@@ -14,6 +12,8 @@ import Input from "@/components/Input";
 import Button from "@/components/Button";
 import styles from "./index.module.scss";
 
+const initialState = { email: "", password: "" };
+
 const LoginForm = () => {
   const router = useRouter();
 
@@ -23,22 +23,17 @@ const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
-  } = useForm<LoginSchemaType>({
-    resolver: zodResolver(loginSchema),
-    mode: "onChange",
+  } = useForm({
+    defaultValues: initialState,
   });
 
-  const emailValue = watch("email");
-  const passwordValue = watch("password");
-
-  const onSubmit: SubmitHandler<LoginSchemaType> = async (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<typeof initialState> = async (formData) => {
+    // console.log(formData);
 
     try {
       const response = await axios.post("/api/login", {
-        email: data.email,
-        password: data.password,
+        email: formData.email,
+        password: formData.password,
       });
 
       if (response.status === 200) {
@@ -62,9 +57,9 @@ const LoginForm = () => {
     }
   };
 
-  const onError = async () => {
-    await alert("아이디 또는 비밀번호를 확인해주세요.");
-  };
+  // const onError = async () => {
+  //   await alert("아이디 또는 비밀번호를 확인해주세요.");
+  // };
 
   const handleKakaoLogin = () => {
     const kakaoAuthURL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}&response_type=code`;
@@ -86,15 +81,22 @@ const LoginForm = () => {
       <header className={styles.header}>
         <h2>로그인</h2>
       </header>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit, onError)}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div>
           <Input
             id="email"
             type="email"
             label="이메일"
             full
-            {...register("email")}
-            error={emailValue ? errors.email?.message : undefined}
+            {...register("email", {
+              required: "이메일을 입력해주세요",
+              pattern: {
+                value:
+                  /^[a-zA-Z0-9.!#$%&'*+\/=?^_{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+                message: "유효한 이메일을 입력해주세요",
+              },
+            })}
+            error={errors.email?.message}
           />
         </div>
         <div>
@@ -103,8 +105,20 @@ const LoginForm = () => {
             type="password"
             label="비밀번호"
             full
-            {...register("password")}
-            error={passwordValue ? errors.password?.message : undefined}
+            {...register("password", {
+              required: "비밀번호를 입력해주세요",
+              minLength: {
+                value: 8,
+                message: "비밀번호는 최소 8자 이상이어야 합니다",
+              },
+              pattern: {
+                value:
+                  /((?=.*[a-zA-Z])(?=.*[\W_]))|((?=.*[a-zA-Z])(?=.*\d))|((?=.*\d)(?=.*[\W_]))/,
+                message:
+                  "비밀번호는 영문, 숫자, 특수문자 중 2가지를 포함해야 합니다",
+              },
+            })}
+            error={errors.password?.message}
           />
         </div>
         <div className={styles["button-container"]}>
