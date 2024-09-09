@@ -19,7 +19,11 @@ const FollowsCreate = () => {
         />
       </section>
       <TitleInput />
-      <Editor />
+      <Editor
+        setContent={(content) => {
+          console.log(content);
+        }}
+      />
       <PostControlButtons
         handleClick={async () => {
           "use server";

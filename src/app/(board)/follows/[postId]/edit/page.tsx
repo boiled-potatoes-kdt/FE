@@ -28,7 +28,12 @@ const FollowsEdit = async ({ params }: { params: { postId: string } }) => {
         />
       </section>
       <TitleInput value={post.title} />
-      <Editor initialData={post.content} />
+      <Editor
+        initialData={post.content}
+        setContent={(content) => {
+          console.log(content);
+        }}
+      />
       <PostControlButtons
         handleClick={async () => {
           "use server";

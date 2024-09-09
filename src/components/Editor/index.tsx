@@ -23,9 +23,10 @@ import "./index.scss";
 interface EditorProps {
   initialData?: string;
   placeholder?: string;
+  setContent: (content: string) => void;
 }
 
-const Editor = ({ initialData, placeholder }: EditorProps) => {
+const Editor = ({ initialData, placeholder, setContent }: EditorProps) => {
   return (
     <CKEditor
       editor={ClassicEditor}
@@ -63,6 +64,9 @@ const Editor = ({ initialData, placeholder }: EditorProps) => {
         ],
         initialData,
         placeholder,
+      }}
+      onChange={(event, editor) => {
+        setContent(editor.getData());
       }}
     />
   );
