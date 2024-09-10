@@ -30,7 +30,9 @@ const CommunityEdit = async ({ params }: { params: { postId: string } }) => {
       <TitleInput value={post.title} />
       <Editor
         initialData={post.content}
-        setContent={(content) => {
+        setContent={async (content) => {
+          "use server";
+
           console.log(content);
         }}
       />

@@ -20,7 +20,9 @@ const CommunityCreate = () => {
       </section>
       <TitleInput />
       <Editor
-        setContent={(content) => {
+        setContent={async (content) => {
+          "use server";
+
           console.log(content);
         }}
       />
