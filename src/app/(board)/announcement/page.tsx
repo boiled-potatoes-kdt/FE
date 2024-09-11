@@ -14,7 +14,7 @@ const Board = async ({ searchParams }: { searchParams: { page: string } }) => {
     <>
       <section className={styles.control}>
         <nav className={styles.search}>
-          <Search />
+          <Search pathname="announcement" searchParams={searchParams} />
         </nav>
         {/* <PostButton /> */}
       </section>

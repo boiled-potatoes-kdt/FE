@@ -21,7 +21,7 @@ const Board = async ({
     <>
       <section className={styles.control}>
         <nav className={styles.search}>
-          <Search />
+          <Search pathname="follows" searchParams={searchParams} />
           <BoardCategory
             pathname="follows"
             searchParams={searchParams}
