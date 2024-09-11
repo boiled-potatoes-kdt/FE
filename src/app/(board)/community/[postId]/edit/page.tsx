@@ -1,12 +1,8 @@
 import PostDivider from "@/components/Board/PostDivider";
-import CategoryTab from "@/components/CategoryTab";
-import TitleInput from "@/components/Board/TitleInput";
-import Editor from "@/components/Editor";
-import PostControlButtons from "@/components/Board/PostControlButtons";
+import PostForm from "@/components/Board/PostForm";
 import { CATEGORY_LIST } from "@/@types/board";
 import { CommunityItemProps } from "@/components/Board/ListItem";
 import mockData from "@/assets/mockData.json";
-import styles from "./page.module.scss";
 
 const CommunityEdit = async ({ params }: { params: { postId: string } }) => {
   const data = mockData.community as CommunityItemProps[];
@@ -19,27 +15,15 @@ const CommunityEdit = async ({ params }: { params: { postId: string } }) => {
   return (
     <>
       <PostDivider marginBottom="20px" />
-      <section className={styles.category}>
-        <CategoryTab
-          tabs={CATEGORY_LIST.community.map((category) => {
-            const { categoryType: id, categoryName: label } = category;
-            return { id, label };
-          })}
-        />
-      </section>
-      <TitleInput value={post.title} />
-      <Editor
-        initialData={post.content}
-        setContent={async (content) => {
-          "use server";
-
-          console.log(content);
-        }}
-      />
-      <PostControlButtons
-        handleClick={async () => {
-          "use server";
-        }}
+      <PostForm
+        pathname="community"
+        category={
+          CATEGORY_LIST.community.find(
+            (category) => category.categoryId === post.categoryId,
+          )?.categoryType
+        }
+        title={post.title}
+        content={post.content}
       />
     </>
   );

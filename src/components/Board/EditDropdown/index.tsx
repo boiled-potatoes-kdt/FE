@@ -24,8 +24,7 @@ const EditDropdown = ({
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    window.addEventListener("click", (event) => {
-      console.log(event);
+    window.addEventListener("click", () => {
       setIsOpen(false);
     });
     return () => {

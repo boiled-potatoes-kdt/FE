@@ -1,8 +1,8 @@
 .ck.ck-editor {
   &__editable {
-    min-height: 640px;
+    height: 640px;
     @include tablet {
-      min-height: 420px;
+      height: 420px;
     }
   }
 }
