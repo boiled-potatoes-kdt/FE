@@ -16,6 +16,7 @@ import {
   Alignment,
   Image,
   ImageUpload,
+  ImageResize,
 } from "ckeditor5";
 import "ckeditor5/ckeditor5.css";
 import "./index.scss";
@@ -61,6 +62,7 @@ const Editor = ({ initialData, placeholder, setContent }: EditorProps) => {
           Alignment,
           Image,
           ImageUpload,
+          ImageResize,
         ],
         initialData,
         placeholder,
