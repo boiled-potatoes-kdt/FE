@@ -15,7 +15,8 @@ const PostControlButtons = () => {
         color="outline"
         onClick={async () => {
           const confirmed = await confirm(
-            "작성 중인 내용이 사라져요!\n그래도 계속하시겠어요?",
+            "작성 중인 내용이 사라져요!",
+            "그래도 계속하시겠어요?",
           );
           if (confirmed) {
             router.back();

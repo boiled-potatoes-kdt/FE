@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import useDialog from "@/hooks/useDialog";
 import { BoardType } from "@/@types/board";
 import IconKebab from "@/assets/icons/icon-kebab.svg";
 import IconEdit from "@/assets/icons/icon-edit.svg";
@@ -22,6 +23,7 @@ const EditDropdown = ({
   commentEdit,
 }: EditDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { confirm } = useDialog();
 
   useEffect(() => {
     window.addEventListener("click", () => {
@@ -79,7 +81,19 @@ const EditDropdown = ({
             )}
           </li>
           <li>
-            <button type="button" className={styles.dropdown__button}>
+            <button
+              type="button"
+              className={styles.dropdown__button}
+              onClick={async () => {
+                const confirmed = await confirm(
+                  "삭제 시 복구가 불가능해요!",
+                  "그래도 삭제하시겠어요?",
+                );
+
+                if (confirmed) {
+                }
+              }}
+            >
               <p className={styles["delete-text"]}>삭제하기</p>
               <IconDelete viewBox="0 0 24 24" />
             </button>
