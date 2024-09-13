@@ -70,3 +70,33 @@ export const CATEGORY_LIST: Record<BoardType, BoardCategory[]> = {
   community: COMMUNITY_LIST,
   follows: FOLLOWS_LIST,
 } as const;
+
+export interface BoardItem {
+  id: number;
+  authorNickName: string;
+  authorProfileImageUrl: string;
+  title: string;
+  content: string;
+  noticeBoardType: BoardName;
+  categoryType: CategoryName;
+  attachedFileUrls: null;
+  createdAt: string;
+  viewCount: number;
+  commentCount: number;
+  contentPreview: string;
+}
+
+export interface BoardList {
+  content: BoardItem[];
+  totalElements: number;
+  totalPages: number;
+}
+
+export interface BoardPost extends BoardItem {
+  previousPostId: number | null;
+  nextPostId: number | null;
+}
+
+export interface BoardResponse {
+  data: BoardList;
+}
