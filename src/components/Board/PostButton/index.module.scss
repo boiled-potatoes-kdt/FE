@@ -1,5 +1,6 @@
 .wrapper {
   display: block;
+  width: max-content;
   @include tablet {
     display: none;
   }
