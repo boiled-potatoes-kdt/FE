@@ -1,21 +1,39 @@
+"use client";
+
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import { BoardResponse } from "@/@types/board";
+import createRequestParamsURI from "@/utils/createRequestParamsURI";
 import Search from "@/components/Board/Search";
 import BoardCategory from "@/components/Board/BoardCategory";
-import CategoryTab from "@/components/CategoryTab";
 import PostButton from "@/components/Board/PostButton";
 import PostDivider from "@/components/Board/PostDivider";
-import { CommunityItemProps } from "@/components/Board/ListItem";
 import List from "@/components/Board/List";
 import Pagination from "@/components/Pagination";
-import { CATEGORY_LIST } from "@/@types/board";
-import mockData from "@/assets/mockData.json";
 import styles from "./page.module.scss";
 
-const Board = async ({
+const Board = ({
   searchParams,
 }: {
-  searchParams: { page: string; category: string };
+  searchParams: { page: string; category: string; keyword: string };
 }) => {
-  const data = mockData.community as CommunityItemProps[];
+  const { data } = useQuery<unknown, unknown, BoardResponse>({
+    queryKey: ["community"],
+    queryFn: async () => {
+      const response = await axios.get(
+        `https://g6-server.dainreview.kr/api/post/communities${createRequestParamsURI(searchParams)}`,
+        { withCredentials: true },
+      );
+
+      return response;
+    },
+  });
+
+  if (!data) {
+    return null;
+  }
+
+  const { content, totalPages } = data.data;
 
   return (
     <>
@@ -32,17 +50,12 @@ const Board = async ({
       </section>
       <PostDivider />
       <section className={styles.list}>
-        <List
-          items={data.slice(
-            10 * (Number(searchParams.page || 1) - 1),
-            10 * Number(searchParams.page || 1),
-          )}
-        />
+        <List items={content} />
         <Pagination
           pathname="/community"
           searchParams={searchParams}
           chunkSize={10}
-          totalPages={Math.ceil(data.length / 10)}
+          totalPages={totalPages}
         />
       </section>
     </>

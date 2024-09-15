@@ -2,7 +2,12 @@ import Link from "next/link";
 import formatDate from "@/utils/formatDate";
 import IconProfile from "@/assets/icons/icon-profile.svg";
 import IconComment from "@/assets/icons/icon-comment.svg";
-import { BoardType, CategoryId, CATEGORY_LIST } from "@/@types/board";
+import {
+  BoardItem,
+  BoardType,
+  CategoryId,
+  CATEGORY_LIST,
+} from "@/@types/board";
 import Category from "../Category";
 import styles from "./index.module.scss";
 
@@ -21,22 +26,22 @@ export interface CommunityItemProps {
 }
 
 const ListItem = ({
-  boardType,
   id,
-  userId,
-  userNickname,
-  categoryId,
+  authorNickName,
   title,
-  preview,
-  date,
+  noticeBoardType,
+  categoryType: categoryName,
+  createdAt,
   viewCount,
   commentCount,
-}: Omit<CommunityItemProps, "content">) => {
+  contentPreview,
+}: BoardItem) => {
+  const boardType: BoardType =
+    noticeBoardType === "커뮤니티" ? "community" : "follows";
   const category = CATEGORY_LIST[boardType].find(
-    (categoryItem) => categoryItem.categoryId === categoryId,
+    (categoryItem) => categoryItem.categoryName === categoryName,
   );
-  const { categoryType, categoryName } =
-    category || CATEGORY_LIST[boardType][0];
+  const { categoryType } = category || CATEGORY_LIST[boardType][0];
 
   return (
     <li className={styles.li}>
@@ -49,18 +54,16 @@ const ListItem = ({
       </Category>
       <Link href={`/${boardType}/${id}`} className={styles.li__link}>
         <h3 className={styles.li__title}>{title}</h3>
-        <p className={styles.li__preview}>{preview}</p>
+        <p className={styles.li__preview}>{contentPreview}</p>
       </Link>
       <section className={styles.section}>
         <ul className={styles.section__list}>
-          <li>
-            <Link href={`/profile/${userId}`} className={styles.section__link}>
-              <IconProfile viewBox="0 0 36 36" />
-              <p>{userNickname}</p>
-            </Link>
+          <li className={styles.section__link}>
+            <IconProfile viewBox="0 0 36 36" />
+            <p>{authorNickName}</p>
           </li>
           <li>
-            <p>{formatDate(date, "YMD")}</p>
+            <p>{formatDate(createdAt, "YMD")}</p>
           </li>
         </ul>
         <ul className={styles.section__list}>
