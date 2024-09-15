@@ -9,7 +9,7 @@ import styles from "./layout.module.scss";
 
 interface ProfileData {
   nickname: string;
-  profileImage: string;
+  profileImageUrl: string;
 }
 
 const MypageLayoutEmployer = ({ children }: { children: React.ReactNode }) => {
@@ -40,7 +40,7 @@ const MypageLayoutEmployer = ({ children }: { children: React.ReactNode }) => {
       <div className={styles.layout__left}>
         <ProfileBoxEmployer
           nickname={profileData.nickname}
-          profileImage={profileData.profileImage}
+          profileImageUrl={profileData.profileImageUrl}
         />
         <InteractionListEmployer />
       </div>

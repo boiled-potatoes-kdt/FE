@@ -10,7 +10,7 @@ import styles from "./layout.module.scss";
 
 interface ProfileData {
   nickname: string;
-  profileImage: string;
+  profileImageUrl: string;
   snsResponseList: SNSResponse[];
 }
 
@@ -46,7 +46,7 @@ const MypageLayoutInfluencer = ({
       <div className={styles.layout__left}>
         <ProfileBoxInfluencer
           nickname={profileData.nickname}
-          profileImage={profileData.profileImage}
+          profileImageUrl={profileData.profileImageUrl}
           snsResponseList={profileData.snsResponseList}
         />
         <InteractionListInfluencer />
