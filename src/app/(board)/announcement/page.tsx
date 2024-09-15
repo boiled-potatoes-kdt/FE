@@ -1,4 +1,5 @@
 import axios from "axios";
+import createRequestParamsURI from "@/utils/createRequestParamsURI";
 import Search from "@/components/Board/Search";
 // import PostButton from "@/components/Board/PostButton";
 import PostDivider from "@/components/Board/PostDivider";
@@ -12,16 +13,9 @@ const Board = async ({
 }: {
   searchParams: { page: string; keyword: string };
 }) => {
-  const url = `https://g6-server.dainreview.kr/api/post/notices${
-    Object.keys(searchParams).length
-      ? `?${Object.keys(searchParams)
-          .filter((param) => param !== "category")
-          .map(
-            (param, index) => `${param}=${Object.values(searchParams)[index]}`,
-          )
-          .join("&")}`
-      : ""
-  }`;
+  const url = `https://g6-server.dainreview.kr/api/post/notices${createRequestParamsURI(
+    searchParams,
+  )}`;
   const data: BoardResponse = await axios.get(url);
   const { content, totalPages } = data.data;
 
