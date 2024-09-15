@@ -25,14 +25,14 @@ export const BOARD_LIST: Board[] = [
 export type CategoryId = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 export type CategoryType =
-  | "question"
-  | "know-how"
-  | "accompany"
-  | "blog"
-  | "instagram"
-  | "youtube"
-  | "tictoc"
-  | "others";
+  | "QUESTION"
+  | "KNOWHOW"
+  | "COMPANION"
+  | "BLOG"
+  | "INSTAGRAM"
+  | "YOUTUBE"
+  | "TIKTOK"
+  | "ETC";
 
 export type CategoryName =
   | "질문하기"
@@ -51,18 +51,18 @@ export interface BoardCategory {
 }
 
 export const COMMUNITY_LIST: BoardCategory[] = [
-  { categoryId: 1, categoryType: "question", categoryName: "질문하기" },
-  { categoryId: 2, categoryType: "know-how", categoryName: "노하우" },
-  { categoryId: 3, categoryType: "accompany", categoryName: "동행" },
-  { categoryId: 4, categoryType: "others", categoryName: "기타" },
+  { categoryId: 1, categoryType: "QUESTION", categoryName: "질문하기" },
+  { categoryId: 2, categoryType: "KNOWHOW", categoryName: "노하우" },
+  { categoryId: 3, categoryType: "COMPANION", categoryName: "동행" },
+  { categoryId: 4, categoryType: "ETC", categoryName: "기타" },
 ] as const;
 
 export const FOLLOWS_LIST: BoardCategory[] = [
-  { categoryId: 5, categoryType: "blog", categoryName: "블로그" },
-  { categoryId: 6, categoryType: "instagram", categoryName: "인스타그램" },
-  { categoryId: 7, categoryType: "youtube", categoryName: "유튜브" },
-  { categoryId: 8, categoryType: "tictoc", categoryName: "틱톡" },
-  { categoryId: 9, categoryType: "others", categoryName: "기타" },
+  { categoryId: 5, categoryType: "BLOG", categoryName: "블로그" },
+  { categoryId: 6, categoryType: "INSTAGRAM", categoryName: "인스타그램" },
+  { categoryId: 7, categoryType: "YOUTUBE", categoryName: "유튜브" },
+  { categoryId: 8, categoryType: "TIKTOK", categoryName: "틱톡" },
+  { categoryId: 9, categoryType: "ETC", categoryName: "기타" },
 ] as const;
 
 export const CATEGORY_LIST: Record<BoardType, BoardCategory[]> = {
