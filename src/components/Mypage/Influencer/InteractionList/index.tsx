@@ -35,9 +35,7 @@ const InteractionListInfluencer = () => {
           <p className={styles.title}>
             보유포인트 <span>0P</span>
           </p>
-          <button type="button" aria-hidden>
-            <IconDirection />
-          </button>
+          <IconDirection />
         </button>
         <button
           type="button"
@@ -47,9 +45,7 @@ const InteractionListInfluencer = () => {
           <p className={styles.title}>
             찜하기 <span>2</span>
           </p>
-          <button type="button" className="" aria-hidden>
-            <IconDirection />
-          </button>
+          <IconDirection />
         </button>
         <div className={styles.interaction__item}>
           <p className={styles.title}>

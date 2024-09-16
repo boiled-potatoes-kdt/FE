@@ -35,9 +35,7 @@ const InteractionListEmployer = () => {
           <p className={styles.title}>
             보유포인트 <span>0P</span>
           </p>
-          <button type="button" aria-hidden>
-            <IconDirection />
-          </button>
+          <IconDirection />
         </button>
         <div className={styles.interaction__item}>
           <p className={styles.title}>
