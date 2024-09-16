@@ -13,10 +13,11 @@ const Board = async ({
 }: {
   searchParams: { page: string; keyword: string };
 }) => {
-  const url = `https://g6-server.dainreview.kr/api/post/notices${createRequestParamsURI(
-    searchParams,
-  )}`;
-  const data: BoardResponse = await axios.get(url);
+  const data: BoardResponse = await axios.get(
+    `https://g6-server.dainreview.kr/api/post/notices${createRequestParamsURI(
+      searchParams,
+    )}`,
+  );
   const { content, totalPages } = data.data;
 
   return (

@@ -100,3 +100,7 @@ export interface BoardPost extends BoardItem {
 export interface BoardResponse {
   data: BoardList;
 }
+
+export interface BoardPostResponse {
+  data: BoardPost;
+}
