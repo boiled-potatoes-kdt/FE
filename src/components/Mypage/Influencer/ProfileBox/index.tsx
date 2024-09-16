@@ -49,7 +49,7 @@ const ProfileBoxInfluencer = ({
       <div className={styles["name-container"]}>
         <strong>{nickname}</strong>
         {isTablet && (
-          <Link href="/">
+          <Link href="/mypage/influencer/profile">
             <IconDirection />
           </Link>
         )}
