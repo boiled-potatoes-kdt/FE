@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import axios from "axios";
 import ProfileBoxEmployer from "@/components/Mypage/Employer/ProfileBox";
 import InteractionListEmployer from "@/components/Mypage/Employer/InteractionList";
@@ -14,6 +15,19 @@ interface ProfileData {
 
 const MypageLayoutEmployer = ({ children }: { children: React.ReactNode }) => {
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
+  const pathname = usePathname();
+  const [isTablet, setIsTablet] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsTablet(window.innerWidth <= 1024);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -34,10 +48,15 @@ const MypageLayoutEmployer = ({ children }: { children: React.ReactNode }) => {
   }, []);
   if (!profileData) return <Loading />;
 
+  const isProfilePage = pathname === "/mypage/employer/profile";
+
   return (
     <div className={styles.layout}>
       <h2 className="visually-hidden">마이페이지</h2>
-      <div className={styles.layout__left}>
+      <div
+        className={styles.layout__left}
+        style={{ display: isProfilePage && isTablet ? "none" : "block" }}
+      >
         <ProfileBoxEmployer
           nickname={profileData.nickname}
           profileImageUrl={profileData.profileImageUrl}
