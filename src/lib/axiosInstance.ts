@@ -23,38 +23,17 @@ const api = axios.create({
 const onRequest = (config: InternalAxiosRequestConfig) => {
   const { method, url } = config;
 
-  const cookie = cookies().getAll();
-  const header = headers();
-
-  console.log(
-    "cookie : \n",
-    cookie.map((c) => `${c.name} ${c.value}`).join("\n"),
-  );
-  console.log(
-    "header : ",
-    Array.from(header.keys())
-      .map((key) => `${key}: ${header.get(key)}\n`)
-      .join(""),
-  );
   logOnDev(`[API] ${method?.toUpperCase()} ${url} | Request`);
 
   return Promise.resolve(config);
 };
 
-const onResponse = (response: AxiosResponse): AxiosResponse["data"] => {
-  const { config, status } = response;
+const onResponse = (response: AxiosResponse): AxiosResponse => {
+  // logOnDev(
+  //   `[API] ${config.method?.toUpperCase()} ${config.url} | Response ${status}`,
+  // );
 
-  logOnDev(
-    `[API] ${config.method?.toUpperCase()} ${config.url} | Response ${status}`,
-  );
-
-  const token = response.headers.authorization;
-
-  if (token) {
-    localStorage.setItem("token", token);
-  }
-
-  return response.data;
+  return response;
 };
 
 const onError = (error: AxiosError | Error): AxiosResponse["data"] | Error => {
