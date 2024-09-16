@@ -1,4 +1,8 @@
-import { CommunityItemProps } from "@/components/Board/ListItem";
+"use client";
+
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import { BoardPostResponse } from "@/@types/board";
 import PostDivider from "@/components/Board/PostDivider";
 import PostTitle from "@/components/Board/PostTitle";
 import PostContent from "@/components/Board/PostContent";
@@ -8,16 +12,26 @@ import Comment from "@/components/Board/Comment";
 import MoreCommentsButton from "@/components/Board/MoreCommentsButton";
 import PostNavigation from "@/components/Board/PostNavigation";
 import MobileTopButton from "@/components/Board/MobileTopButton";
-import mockData from "@/assets/mockData.json";
 import styles from "./page.module.scss";
 
-const Post = async ({ params }: { params: { postId: string } }) => {
-  const data = mockData.community as CommunityItemProps[];
-  const post = data.find((item) => item.id === Number(params.postId));
+const Post = ({ params }: { params: { postId: string } }) => {
+  const { data } = useQuery<unknown, unknown, BoardPostResponse>({
+    queryKey: ["community", params.postId],
+    queryFn: async () => {
+      const response = await axios.get(
+        `https://g6-server.dainreview.kr/api/post/communities/${params.postId}`,
+        { withCredentials: true },
+      );
 
-  if (!post) {
+      return response;
+    },
+  });
+
+  if (!data) {
     return null;
   }
+
+  const post = data.data;
 
   return (
     <>
@@ -45,8 +59,8 @@ const Post = async ({ params }: { params: { postId: string } }) => {
         </section>
       </aside>
       <PostNavigation
-        previous="/community/1"
-        next="/community/1"
+        previous={post.previousPostId}
+        next={post.nextPostId}
         list="/community"
       />
       <MobileTopButton />
