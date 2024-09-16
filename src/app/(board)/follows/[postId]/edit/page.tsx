@@ -17,6 +17,7 @@ const FollowsEdit = async ({ params }: { params: { postId: string } }) => {
       <PostDivider marginBottom="20px" />
       <PostForm
         pathname="follows"
+        postId={params.postId}
         category={
           CATEGORY_LIST.follows.find(
             (category) => category.categoryId === post.categoryId,
@@ -24,6 +25,7 @@ const FollowsEdit = async ({ params }: { params: { postId: string } }) => {
         }
         title={post.title}
         content={post.content}
+        isEdit
       />
     </>
   );

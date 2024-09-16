@@ -16,7 +16,7 @@ import styles from "./page.module.scss";
 
 const Post = ({ params }: { params: { postId: string } }) => {
   const { data } = useQuery<unknown, unknown, BoardPostResponse>({
-    queryKey: ["community", params.postId],
+    queryKey: ["communities", params.postId],
     queryFn: async () => {
       const response = await axios.get(
         `https://g6-server.dainreview.kr/api/post/communities/${params.postId}`,
@@ -61,7 +61,7 @@ const Post = ({ params }: { params: { postId: string } }) => {
       <PostNavigation
         previous={post.previousPostId}
         next={post.nextPostId}
-        list="/community"
+        list="/communities"
       />
       <MobileTopButton />
     </>

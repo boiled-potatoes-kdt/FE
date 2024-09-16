@@ -18,7 +18,7 @@ const Board = ({
   searchParams: { page: string; category: string; keyword: string };
 }) => {
   const { data } = useQuery<unknown, unknown, BoardResponse>({
-    queryKey: ["community"],
+    queryKey: ["communities"],
     queryFn: async () => {
       const response = await axios.get(
         `https://g6-server.dainreview.kr/api/post/communities${createRequestParamsURI(searchParams)}`,
@@ -39,20 +39,20 @@ const Board = ({
     <>
       <section className={styles.control}>
         <nav className={styles.search}>
-          <Search pathname="community" searchParams={searchParams} />
+          <Search pathname="communities" searchParams={searchParams} />
           <BoardCategory
-            pathname="community"
+            pathname="communities"
             searchParams={searchParams}
             activeTab={searchParams.category}
           />
         </nav>
-        <PostButton href="/community/create" />
+        <PostButton href="/communities/create" />
       </section>
       <PostDivider />
       <section className={styles.list}>
         <List items={content} />
         <Pagination
-          pathname="/community"
+          pathname="/communities"
           searchParams={searchParams}
           chunkSize={10}
           totalPages={totalPages}

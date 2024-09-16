@@ -20,7 +20,7 @@ const PostTitle = ({ post }: { post: BoardPost }) => {
     commentCount,
   } = post;
   const boardType: BoardType =
-    noticeBoardType === "커뮤니티" ? "community" : "follows";
+    noticeBoardType === "커뮤니티" ? "communities" : "follows";
   const category = CATEGORY_LIST[boardType].find(
     (categoryItem) => categoryItem.categoryName === categoryName,
   );

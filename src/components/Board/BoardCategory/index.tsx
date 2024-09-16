@@ -6,7 +6,7 @@ import CategoryTab from "@/components/CategoryTab";
 import { CATEGORY_LIST } from "@/@types/board";
 
 interface BoardCategoryProps {
-  pathname: "community" | "follows";
+  pathname: "communities" | "follows";
   searchParams: { category: string };
   activeTab?: string;
 }
@@ -32,7 +32,7 @@ const BoardCategory = ({
           "set",
           searchParams,
           `/${pathname}`,
-          pathname === "community" ? "communityType" : "followType",
+          pathname === "communities" ? "communityType" : "followType",
           id,
         );
         router.push(url);

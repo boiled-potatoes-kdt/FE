@@ -5,7 +5,7 @@ import { CommunityItemProps } from "@/components/Board/ListItem";
 import mockData from "@/assets/mockData.json";
 
 const CommunityEdit = async ({ params }: { params: { postId: string } }) => {
-  const data = mockData.community as CommunityItemProps[];
+  const data = mockData.communities as CommunityItemProps[];
   const post = data.find((item) => item.id === Number(params.postId));
 
   if (!post) {
@@ -16,9 +16,10 @@ const CommunityEdit = async ({ params }: { params: { postId: string } }) => {
     <>
       <PostDivider marginBottom="20px" />
       <PostForm
-        pathname="community"
+        pathname="communities"
+        postId={params.postId}
         category={
-          CATEGORY_LIST.community.find(
+          CATEGORY_LIST.communities.find(
             (category) => category.categoryId === post.categoryId,
           )?.categoryType
         }

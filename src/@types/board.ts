@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export type BoardId = "A" | "B" | "C";
 
-export const BOARD_TYPE = ["announcement", "community", "follows"] as const;
+export const BOARD_TYPE = ["announcement", "communities", "follows"] as const;
 
 export type BoardType = (typeof BOARD_TYPE)[number];
 
@@ -18,7 +18,7 @@ export type Board = {
 
 export const BOARD_LIST: Board[] = [
   { boardId: "A", boardType: "announcement", boardName: "공지사항" },
-  { boardId: "B", boardType: "community", boardName: "커뮤니티" },
+  { boardId: "B", boardType: "communities", boardName: "커뮤니티" },
   { boardId: "C", boardType: "follows", boardName: "맞팔/서이추" },
 ] as const;
 
@@ -67,7 +67,7 @@ export const FOLLOWS_LIST: BoardCategory[] = [
 
 export const CATEGORY_LIST: Record<BoardType, BoardCategory[]> = {
   announcement: [],
-  community: COMMUNITY_LIST,
+  communities: COMMUNITY_LIST,
   follows: FOLLOWS_LIST,
 } as const;
 

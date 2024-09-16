@@ -18,5 +18,5 @@ export const middleware = (/*request: NextRequest*/) => {
 };
 
 export const config = {
-  matcher: ["/community/:path*", "/follows/:path*"],
+  matcher: ["/communities/:path*", "/follows/:path*"],
 };
