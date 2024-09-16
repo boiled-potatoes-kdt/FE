@@ -7,12 +7,14 @@ const formatDate = (
   if (!dateString) {
     return null;
   }
-  // YYYY-MM-DDTHH-MM-SS.XXXXXX
+  // YYYY-MM-DDTHH:MM:SS.XXXXXX
   const [year, month, day, hour, minute] = dateString
     .split(".")[0]
     .split("T")
-    .reduce((acc: string[], cur) => {
-      cur.split("-").forEach((unit) => acc.push(unit));
+    .reduce((acc: string[], cur, index) => {
+      index === 0
+        ? cur.split("-").forEach((unit) => acc.push(unit))
+        : cur.split(":").forEach((unit) => acc.push(unit));
       return acc;
     }, []);
   const shortYear = year.slice(2);
