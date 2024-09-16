@@ -14,12 +14,30 @@ export type Board = {
   boardId: BoardId;
   boardType: BoardType;
   boardName: BoardName;
+  boardCode: BoardCode;
 };
 
+export type BoardCode = "NOTICE" | "COMMUNITY" | "FOLLOW";
+
 export const BOARD_LIST: Board[] = [
-  { boardId: "A", boardType: "announcement", boardName: "공지사항" },
-  { boardId: "B", boardType: "communities", boardName: "커뮤니티" },
-  { boardId: "C", boardType: "follows", boardName: "맞팔/서이추" },
+  {
+    boardId: "A",
+    boardType: "announcement",
+    boardName: "공지사항",
+    boardCode: "NOTICE",
+  },
+  {
+    boardId: "B",
+    boardType: "communities",
+    boardName: "커뮤니티",
+    boardCode: "COMMUNITY",
+  },
+  {
+    boardId: "C",
+    boardType: "follows",
+    boardName: "맞팔/서이추",
+    boardCode: "FOLLOW",
+  },
 ] as const;
 
 export type CategoryId = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
