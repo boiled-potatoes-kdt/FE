@@ -47,7 +47,7 @@ const ProfileBoxEmployer = ({
       <div className={styles["name-container"]}>
         <strong>{nickname}</strong>
         {isTablet && (
-          <Link href="/">
+          <Link href="/mypage/employer/profile">
             <IconDirection />
           </Link>
         )}
