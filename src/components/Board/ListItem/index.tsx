@@ -2,28 +2,9 @@ import Link from "next/link";
 import formatDate from "@/utils/formatDate";
 import IconProfile from "@/assets/icons/icon-profile.svg";
 import IconComment from "@/assets/icons/icon-comment.svg";
-import {
-  BoardItem,
-  BoardType,
-  CategoryId,
-  CATEGORY_LIST,
-} from "@/@types/board";
+import { BoardItem, BoardType, CATEGORY_LIST } from "@/@types/board";
 import Category from "../Category";
 import styles from "./index.module.scss";
-
-export interface CommunityItemProps {
-  boardType: BoardType;
-  id: number;
-  userId: number;
-  userNickname: string;
-  categoryId: CategoryId | null;
-  title: string;
-  preview: string;
-  content: string;
-  date: string;
-  viewCount: number;
-  commentCount: number;
-}
 
 const ListItem = ({
   id,

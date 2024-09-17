@@ -89,7 +89,6 @@ const PostForm = ({
     if (pathname === "follows") {
       data["followType"] = formCategory;
     }
-    console.log(data);
     formData.append(
       "data",
       new Blob([JSON.stringify(data)], {

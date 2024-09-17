@@ -122,3 +122,22 @@ export interface BoardResponse {
 export interface BoardPostResponse {
   data: BoardPost;
 }
+
+export interface Comment {
+  id: number;
+  parentId: number | null;
+  userName: string;
+  userProfileImage: string | null;
+  content: string;
+  createdAt: string;
+}
+
+export interface CommentList {
+  content: Comment[];
+  totalElements: number;
+  totalPages: number;
+}
+
+export interface CommentListResponse {
+  body: { comments: CommentList; replies: Comment[] };
+}

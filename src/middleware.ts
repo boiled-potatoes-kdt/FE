@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import axios from "axios";
+// import axios from "axios";
 // import type { NextRequest } from "next/server";
 
 export const middleware = (/*request: NextRequest*/) => {
@@ -18,5 +18,5 @@ export const middleware = (/*request: NextRequest*/) => {
 };
 
 export const config = {
-  matcher: ["/communities/:path*", "/follows/:path*"],
+  matcher: ["/community/:path*", "/follows/:path*"],
 };
