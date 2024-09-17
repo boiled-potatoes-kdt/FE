@@ -36,7 +36,7 @@ const PostTitle = ({ post }: { post: BoardPost }) => {
         >
           {categoryName}
         </Category>
-        <EditDropdown type="post" boardType={boardType} id={id} />
+        <EditDropdown type="post" boardType={boardType} postId={id} />
       </aside>
       <h3 className={styles.title__text}>{title}</h3>
       <ul className={styles.title__info}>
