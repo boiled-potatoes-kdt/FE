@@ -79,10 +79,12 @@ const PostForm = ({
     const data: Record<string, string> = {
       title: formTitle,
       content: formContent,
-      categoryType:
-        BOARD_LIST.find((board) => board.boardType === pathname)?.boardCode ??
-        "",
     };
+    if (!isEdit) {
+      data["categoryType"] =
+        BOARD_LIST.find((board) => board.boardType === pathname)?.boardCode ??
+        "";
+    }
     if (pathname === "communities") {
       data["communityType"] = formCategory;
     }

@@ -123,7 +123,7 @@ export interface BoardPostResponse {
   data: BoardPost;
 }
 
-export interface Comment {
+export interface CommentItem {
   id: number;
   parentId: number | null;
   userName: string;
@@ -133,11 +133,21 @@ export interface Comment {
 }
 
 export interface CommentList {
-  content: Comment[];
+  content: CommentItem[];
   totalElements: number;
   totalPages: number;
 }
 
 export interface CommentListResponse {
-  body: { comments: CommentList; replies: Comment[] };
+  comments: CommentList;
+  replies: CommentItem[];
+}
+
+export interface CommentResponse {
+  data: CommentListResponse;
+}
+
+export interface CommentPage {
+  pageParams: number[];
+  pages: CommentResponse[];
 }

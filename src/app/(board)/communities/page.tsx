@@ -19,14 +19,11 @@ const Board = ({
 }) => {
   const { data } = useQuery<unknown, unknown, BoardResponse>({
     queryKey: ["communities"],
-    queryFn: async () => {
-      const response = await axios.get(
+    queryFn: () =>
+      axios.get(
         `https://g6-server.dainreview.kr/api/post/communities${createRequestParamsURI(searchParams)}`,
         { withCredentials: true },
-      );
-
-      return response;
-    },
+      ),
   });
 
   if (!data) {

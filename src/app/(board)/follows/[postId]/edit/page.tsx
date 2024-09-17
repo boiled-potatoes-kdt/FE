@@ -10,14 +10,11 @@ import { CATEGORY_LIST } from "@/@types/board";
 const FollowsEdit = async ({ params }: { params: { postId: string } }) => {
   const { data } = useQuery<unknown, unknown, BoardPostResponse>({
     queryKey: ["follows", params.postId],
-    queryFn: async () => {
-      const response = await axios.get(
+    queryFn: () =>
+      axios.get(
         `https://g6-server.dainreview.kr/api/post/follows/${params.postId}`,
         { withCredentials: true },
-      );
-
-      return response;
-    },
+      ),
   });
 
   if (!data) {

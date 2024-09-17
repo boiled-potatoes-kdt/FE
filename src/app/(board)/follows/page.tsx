@@ -19,14 +19,11 @@ const Board = ({
 }) => {
   const { data } = useQuery<unknown, unknown, BoardResponse>({
     queryKey: ["follows"],
-    queryFn: async () => {
-      const response = await axios.get(
+    queryFn: () =>
+      axios.get(
         `https://g6-server.dainreview.kr/api/post/follows${createRequestParamsURI(searchParams)}`,
         { withCredentials: true },
-      );
-
-      return response;
-    },
+      ),
   });
 
   if (!data) {

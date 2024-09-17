@@ -8,6 +8,8 @@ const CommentInput = ({
   id = "comment",
   value = "",
 }: {
+  postId: number;
+  commentId?: number;
   id?: string;
   value?: string;
 }) => {

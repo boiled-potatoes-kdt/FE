@@ -12,7 +12,7 @@ import styles from "./index.module.scss";
 interface EditDropdownProps {
   type: "post" | "comment";
   boardType?: BoardType;
-  id: number;
+  id?: number;
   commentEdit?: () => void;
 }
 

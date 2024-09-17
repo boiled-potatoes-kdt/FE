@@ -7,13 +7,17 @@
     gap: 8px;
   }
   &__profile {
-    & > svg {
+    & > img,
+    svg {
       width: 36px;
       height: 36px;
       @include tablet {
         width: 24px;
         height: 24px;
       }
+    }
+    & > img {
+      object-fit: cover;
     }
   }
   &__content {
