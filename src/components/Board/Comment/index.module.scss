@@ -73,3 +73,10 @@
     color: $gray-80;
   }
 }
+
+.reply-input {
+  padding-left: 68px;
+  @include tablet {
+    padding-left: 32px;
+  }
+}

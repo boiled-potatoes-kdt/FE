@@ -102,19 +102,21 @@ const PostForm = ({
   };
 
   useEffect(() => {
+    if (!isError) {
+      return;
+    }
     const alertError = async () => {
       await alert("게시글 작성에 실패했습니다!");
     };
-    if (isError) {
-      alertError();
-    }
+    alertError();
   }, [isError]);
 
   useEffect(() => {
-    if (isSuccess) {
-      queryClient.removeQueries({ queryKey: [pathname] });
-      router.push(`/${pathname}`);
+    if (!isSuccess) {
+      return;
     }
+    queryClient.invalidateQueries({ queryKey: [pathname], refetchType: "all" });
+    router.push(`/${pathname}`);
   }, [isSuccess]);
 
   return (

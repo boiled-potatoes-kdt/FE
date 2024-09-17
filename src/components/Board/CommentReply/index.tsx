@@ -12,10 +12,12 @@ import styles from "../Comment/index.module.scss";
 interface CommentProps {
   comment: CommentItem;
   postId: number;
+  handleDelete: () => void;
 }
 
-const Comment = ({ comment, postId }: CommentProps) => {
-  const { id, userName, userProfileImage, content, createdAt } = comment;
+const Comment = ({ comment, postId, handleDelete }: CommentProps) => {
+  const { id, parentId, userName, userProfileImage, content, createdAt } =
+    comment;
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [isTemporaryHidden, setIsTemporaryHidden] = useState<boolean>(false);
 
@@ -54,12 +56,19 @@ const Comment = ({ comment, postId }: CommentProps) => {
                 setIsEdit(true);
               }}
               commentDelete={() => {
+                handleDelete();
                 setIsTemporaryHidden(true);
               }}
             />
           </aside>
           {isEdit ? (
-            <CommentInput postId={postId} id={id.toString()} value={content} />
+            <CommentInput
+              postId={postId}
+              commentId={id}
+              parentId={parentId}
+              id={id.toString()}
+              value={content}
+            />
           ) : (
             <p className={styles.comment__text}>{content}</p>
           )}

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import axios from "axios";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import {
@@ -19,6 +20,8 @@ import MobileTopButton from "@/components/Board/MobileTopButton";
 import styles from "./page.module.scss";
 
 const Post = ({ params }: { params: { postId: string } }) => {
+  const [temporaryCommentDeleteCount, setTemporaryCommentDeleteCount] =
+    useState<number>(0);
   const { data: postData } = useQuery<unknown, unknown, BoardPostResponse>({
     queryKey: ["communities", params.postId],
     queryFn: () =>
@@ -47,7 +50,7 @@ const Post = ({ params }: { params: { postId: string } }) => {
       ),
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages, lastPageParam) => {
-      if (lastPage.data.comments.content.length === 0) {
+      if (lastPageParam + 1 === allPages[0].data.comments.totalPages) {
         return undefined;
       }
       return lastPageParam + 1;
@@ -69,7 +72,11 @@ const Post = ({ params }: { params: { postId: string } }) => {
       </section>
       <aside className={styles.comment}>
         <MobileCommentCount
-          count={commentPages.pages[0].data.comments.totalElements}
+          count={
+            commentPages.pages[0].data.comments.totalElements +
+            commentPages.pages[0].data.replies.length -
+            temporaryCommentDeleteCount
+          }
         />
         <CommentInput postId={parseInt(params.postId, 10)} />
         <section>
@@ -80,6 +87,9 @@ const Post = ({ params }: { params: { postId: string } }) => {
                   <Comment
                     postId={parseInt(params.postId, 10)}
                     comment={commentItem}
+                    handleDelete={() => {
+                      setTemporaryCommentDeleteCount((prev) => prev + 1);
+                    }}
                     replies={page.data.replies.filter(
                       (reply) => reply.parentId === commentItem.id,
                     )}

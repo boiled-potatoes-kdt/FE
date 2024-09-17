@@ -67,27 +67,36 @@ const EditDropdown = ({
   }
 
   useEffect(() => {
-    if (isSuccess) {
-      if (type === "comment") {
-        queryClient.removeQueries({ queryKey: ["comments", commentId] });
-        if (commentDelete) {
-          commentDelete();
-        }
+    if (!isSuccess) {
+      return;
+    }
+    if (type === "comment") {
+      if (commentId) {
+        queryClient.invalidateQueries({
+          queryKey: ["comments", commentId.toString()],
+        });
       }
-      if (type === "post") {
-        queryClient.removeQueries({ queryKey: [boardType] });
-        router.push(`/${boardType}`);
+      if (commentDelete) {
+        commentDelete();
       }
+    }
+    if (type === "post") {
+      queryClient.invalidateQueries({
+        queryKey: [boardType],
+        refetchType: "all",
+      });
+      router.push(`/${boardType}`);
     }
   }, [isSuccess]);
 
   useEffect(() => {
-    if (isError) {
-      const alertError = async () => {
-        await alert("삭제에 실패했습니다!");
-      };
-      alertError();
+    if (!isError) {
+      return;
     }
+    const alertError = async () => {
+      await alert("삭제에 실패했습니다!");
+    };
+    alertError();
   }, [isError]);
 
   return (

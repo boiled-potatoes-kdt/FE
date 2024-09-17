@@ -12,13 +12,15 @@ import styles from "./index.module.scss";
 interface CommentProps {
   comment: CommentItem;
   postId: number;
+  handleDelete: () => void;
   replies?: CommentItem[];
 }
 
-const Comment = ({ comment, postId, replies }: CommentProps) => {
+const Comment = ({ comment, postId, handleDelete, replies }: CommentProps) => {
   const { id, userName, userProfileImage, content, createdAt } = comment;
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [isTemporaryHidden, setIsTemporaryHidden] = useState<boolean>(false);
+  const [isReplyInputShown, setIsReplyInputShown] = useState<boolean>(false);
 
   return (
     !isTemporaryHidden && (
@@ -53,6 +55,7 @@ const Comment = ({ comment, postId, replies }: CommentProps) => {
                   setIsEdit(true);
                 }}
                 commentDelete={() => {
+                  handleDelete();
                   setIsTemporaryHidden(true);
                 }}
               />
@@ -67,16 +70,31 @@ const Comment = ({ comment, postId, replies }: CommentProps) => {
             ) : (
               <p className={styles.comment__text}>{content}</p>
             )}
-            <button className={styles["reply-button"]} type="button">
+            <button
+              className={styles["reply-button"]}
+              type="button"
+              onClick={() => {
+                setIsReplyInputShown((prev) => !prev);
+              }}
+            >
               답글 쓰기
             </button>
           </section>
         </article>
+        <section className={styles["reply-input"]}>
+          {isReplyInputShown && (
+            <CommentInput postId={postId} parentId={id} id="reply" />
+          )}
+        </section>
         <ul>
           {replies &&
             replies.map((reply) => (
               <li key={reply.id}>
-                <CommentReply comment={reply} postId={postId} />
+                <CommentReply
+                  comment={reply}
+                  postId={postId}
+                  handleDelete={handleDelete}
+                />
               </li>
             ))}
         </ul>
