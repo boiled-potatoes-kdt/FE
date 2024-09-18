@@ -1,16 +1,50 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect } from "react";
+import { Step5Data } from "@/@types/register";
 import Input from "@/components/Input";
 import BoxRadioButton from "@/components/BoxRadioButton";
 import styles from "./index.module.scss";
 
-const VisitStep5 = () => {
-  const [isPoint, setIsPoint] = useState<string | null>(null);
+interface VisitStep5Props {
+  stepData: Step5Data;
+  setStepData: (data: Step5Data) => void;
+}
 
+const VisitStep5: React.FC<VisitStep5Props> = ({ stepData, setStepData }) => {
   const handlePointChange = (value: string) => {
-    setIsPoint(value);
+    const pointPayment = value === "yes";
+    setStepData({
+      ...stepData,
+      pointPayment,
+    });
   };
+
+  const handleCapacityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const capacity = Number(e.target.value);
+    setStepData({
+      ...stepData,
+      capacity,
+    });
+  };
+
+  const handlePersonPointChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const personPoint = Number(e.target.value);
+    setStepData({
+      ...stepData,
+      personPoint,
+    });
+  };
+
+  useEffect(() => {
+    if (stepData.pointPayment) {
+      const totalPoint = stepData.capacity * stepData.personPoint * 1.2;
+      setStepData({
+        ...stepData,
+        totalPoint,
+      });
+    }
+  }, [stepData.capacity, stepData.personPoint, stepData.pointPayment]);
 
   return (
     <section className={styles.container}>
@@ -24,6 +58,8 @@ const VisitStep5 = () => {
             type="textarea"
             full
             unit="명"
+            value={stepData.capacity || ""}
+            onChange={handleCapacityChange}
           />
         </article>
         <article className={styles.article}>
@@ -35,7 +71,7 @@ const VisitStep5 = () => {
                 { value: "no", optionLabel: "아니오" },
               ]}
               onChange={handlePointChange}
-              selectedValue={isPoint}
+              selectedValue={stepData.pointPayment ? "yes" : "no"}
               label="포인트 지급 여부"
             />
           </div>
@@ -49,8 +85,9 @@ const VisitStep5 = () => {
               id="onePoint"
               type="number"
               unit="Point"
-              disabled
+              disabled={!stepData.pointPayment}
               full
+              onChange={handlePersonPointChange}
             />
             <Input
               label="총 지급 포인트"
@@ -59,6 +96,8 @@ const VisitStep5 = () => {
               unit="Point"
               gap={6}
               full
+              value={stepData.totalPoint || ""}
+              disabled
             />
             <p className={styles["info-message"]}>
               = 총 모집 인원 수 X 1인당 지급 포인트 X 수수료 20%
