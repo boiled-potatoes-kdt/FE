@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import createParamsURL from "@/utils/createParamsURL";
 import IconSearch from "@/assets/icons/icon-search.svg";
 import styles from "./index.module.scss";
