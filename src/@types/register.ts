@@ -1,9 +1,7 @@
-import { Option } from "@/components/Selectbox";
-
 export interface Step1Data {
-  platform: Option | null;
-  type: Option | null;
-  category: Option | null;
+  platform: string | null;
+  type: string | null;
+  category: string | null;
   serviceProvided: string;
 }
 
@@ -30,6 +28,6 @@ export interface Step4Data {
 export interface Step5Data {
   capacity: number;
   pointPayment: boolean;
-  personPoint: number;
+  pointPerPerson: number;
   totalPoint: number;
 }

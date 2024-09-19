@@ -28,23 +28,30 @@ const VisitStep5: React.FC<VisitStep5Props> = ({ stepData, setStepData }) => {
     });
   };
 
-  const handlePersonPointChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const personPoint = Number(e.target.value);
+  const handlePointPerPersonChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const pointPerPerson = Number(e.target.value);
     setStepData({
       ...stepData,
-      personPoint,
+      pointPerPerson,
     });
   };
 
   useEffect(() => {
-    if (stepData.pointPayment) {
-      const totalPoint = stepData.capacity * stepData.personPoint * 1.2;
+    if (stepData.pointPayment && stepData.capacity && stepData.pointPerPerson) {
+      const totalPoint = stepData.capacity * stepData.pointPerPerson * 1.2;
       setStepData({
         ...stepData,
         totalPoint,
       });
+    } else {
+      setStepData({
+        ...stepData,
+        totalPoint: 0,
+      });
     }
-  }, [stepData.capacity, stepData.personPoint, stepData.pointPayment]);
+  }, [stepData.capacity, stepData.pointPerPerson, stepData.pointPayment]);
 
   return (
     <section className={styles.container}>
@@ -79,33 +86,37 @@ const VisitStep5: React.FC<VisitStep5Props> = ({ stepData, setStepData }) => {
             📢 포인트를 지급할 경우 프리미엄 체험단으로 등록되어 양질의
             인플루언서가 지원할 확률이 높아집니다.
           </p>
-          <div className={styles["input-container"]}>
-            <Input
-              label="1인당 지급 포인트"
-              id="onePoint"
-              type="number"
-              unit="Point"
-              disabled={!stepData.pointPayment}
-              full
-              onChange={handlePersonPointChange}
-            />
-            <Input
-              label="총 지급 포인트"
-              id="totalPoint"
-              type="number"
-              unit="Point"
-              gap={6}
-              full
-              value={stepData.totalPoint || ""}
-              disabled
-            />
-            <p className={styles["info-message"]}>
-              = 총 모집 인원 수 X 1인당 지급 포인트 X 수수료 20%
-            </p>
-          </div>
+          {stepData.pointPayment && (
+            <div className={styles["input-container"]}>
+              <Input
+                label="1인당 지급 포인트"
+                id="onePoint"
+                type="number"
+                unit="Point"
+                disabled={!stepData.pointPayment}
+                full
+                value={stepData.pointPerPerson || ""}
+                onChange={handlePointPerPersonChange}
+              />
+              <Input
+                label="총 지급 포인트"
+                id="totalPoint"
+                type="number"
+                unit="Point"
+                gap={6}
+                full
+                value={stepData.totalPoint || ""}
+                disabled
+              />
+              <p className={styles["info-message"]}>
+                = 총 모집 인원 수 X 1인당 지급 포인트 X 수수료 20%
+              </p>
+            </div>
+          )}
         </article>
       </div>
     </section>
   );
 };
+
 export default VisitStep5;

@@ -14,6 +14,7 @@ interface VisitStep2Props {
 
 const VisitStep2: React.FC<VisitStep2Props> = ({ stepData, setStepData }) => {
   const [isDetailAddressEdit, setIsDetailAddressEdit] = useState(false);
+
   // 다음 API 호출
   useEffect(() => {
     const script = document.createElement("script");
@@ -147,6 +148,7 @@ const VisitStep2: React.FC<VisitStep2Props> = ({ stepData, setStepData }) => {
             placeholder="- 없이 입력"
             full
             value={stepData.contactNumber}
+            maxLength={9}
             onChange={handleContactNumberChange}
           />
         </article>

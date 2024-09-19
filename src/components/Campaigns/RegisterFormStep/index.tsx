@@ -27,9 +27,9 @@ const RegisterFormStep: React.FC = () => {
 
   // Step 1
   const [step1Data, setStep1Data] = useState<Step1Data>({
-    platform: null,
-    type: null,
-    category: null,
+    platform: "",
+    type: "",
+    category: "",
     serviceProvided: "",
   });
 
@@ -60,13 +60,22 @@ const RegisterFormStep: React.FC = () => {
   const [step5Data, setStep5Data] = useState<Step5Data>({
     capacity: 0,
     pointPayment: true,
-    personPoint: 0,
+    pointPerPerson: 0,
     totalPoint: 0,
   });
 
+  const updateStep1Data = (data: Partial<Step1Data>) => {
+    setStep1Data((prevData) => ({
+      ...prevData,
+      ...data,
+    }));
+  };
+
   const steps = [
     {
-      component: <VisitStep1 stepData={step1Data} setStepData={setStep1Data} />,
+      component: (
+        <VisitStep1 stepData={step1Data} setStepData={updateStep1Data} />
+      ),
       label: "플랫폼 유형 제공 서비스",
       validate: () => {
         return (
@@ -118,7 +127,7 @@ const RegisterFormStep: React.FC = () => {
         return (
           step5Data.capacity > 0 &&
           (!step5Data.pointPayment ||
-            (step5Data.personPoint > 0 && step5Data.totalPoint > 0))
+            (step5Data.pointPerPerson > 0 && step5Data.totalPoint > 0))
         );
       },
     },
@@ -154,8 +163,8 @@ const RegisterFormStep: React.FC = () => {
 
     const formData = new FormData();
 
-    // Step 1 to Step 5 data (JSON으로 변환해서 넣기)
-    const jsonData = {
+    // JSON 데이터
+    const data = {
       businessName: step2Data.businessName,
       contactNumber: step2Data.contactNumber,
       address: step2Data.address,
@@ -172,16 +181,21 @@ const RegisterFormStep: React.FC = () => {
       keywords: step4Data.keywords,
       capacity: step5Data.capacity,
       pointPayment: step5Data.pointPayment,
-      personPoint: step5Data.personPoint,
-      totalPoint: step5Data.totalPoint,
+      pointPerPerson: step5Data.pointPerPerson,
     };
 
-    // JSON 데이터를 문자열로 변환하여 FormData에 추가
-    formData.append("data", JSON.stringify(jsonData));
+    // data를 Blob으로 변환하여 application/json 타입으로 전송
+    const jsonBlob = new Blob([JSON.stringify(data)], {
+      type: "application/json",
+    });
+    formData.append("data", jsonBlob);
 
-    // Step2의 imageUrl (파일만 FormData에 별도로 추가)
+    // Step2의 imageUrl
     if (step2Data.imageUrl instanceof File) {
-      formData.append("imageUrl", step2Data.imageUrl); // 파일만 FormData에 append
+      formData.append("imageFile", step2Data.imageUrl);
+    } else {
+      alert("이미지를 등록해주세요.");
+      return;
     }
 
     try {
@@ -192,15 +206,20 @@ const RegisterFormStep: React.FC = () => {
           headers: {
             "Content-Type": "multipart/form-data",
           },
+          withCredentials: true,
         },
       );
-      alert("등록 완료되었습니다.");
+      if (response.status === 200) {
+        alert("체험단 검수가 요청되었습니다. 검수 후에 체험단이 등록됩니다.");
+        router.push("/");
+      } else {
+        throw new Error("서버 에러 발생");
+      }
     } catch (error) {
-      console.error("등록 중 오류 발생:", error);
-      alert("등록에 실패했습니다.");
-      console.log("전송된 jsonData:", JSON.stringify(jsonData, null, 2));
+      console.error("제출 실패, 요청 데이터:", formData);
     }
   };
+
   return (
     <div className={styles.container}>
       <form className={styles.form}>
