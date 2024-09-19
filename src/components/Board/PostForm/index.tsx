@@ -38,6 +38,7 @@ const PostForm = ({
     category ?? null,
   );
   const [formContent, setFormContent] = useState<string>(content ?? "");
+  const [images, setImages] = useState<File[]>([]);
   const { alert } = useDialog();
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -119,6 +120,10 @@ const PostForm = ({
     router.push(`/${pathname}`);
   }, [isSuccess]);
 
+  useEffect(() => {
+    console.log(images);
+  }, [images]);
+
   return (
     <form onSubmit={handleSubmit} encType="multipart/form-data">
       <section className={styles.category}>
@@ -141,6 +146,7 @@ const PostForm = ({
         initialData={formContent}
         placeholder="회원님들과 함께 나누고 싶은 글을 마음껏 작성해 보세요!"
         setContent={setFormContent}
+        setImage={setImages}
       />
       <PostControlButtons disabled={isPending} />
     </form>
