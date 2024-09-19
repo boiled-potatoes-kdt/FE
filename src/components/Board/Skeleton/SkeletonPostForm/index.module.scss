@@ -1,5 +1,5 @@
 .skeleton {
-  @include skeleton();
+  @include skeleton;
   width: 100%;
   &__category {
     height: 38px;
