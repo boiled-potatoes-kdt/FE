@@ -30,3 +30,19 @@ export interface CampaignItem {
 export interface CampaignItemProps {
   campaignItems: CampaignItem[];
 }
+
+export interface CampaignAttendee {
+  userId: number;
+  name: string;
+  isChoice: boolean;
+  cancelledApplicationCount: 0;
+  phone: string;
+  message: string;
+  reviewDate: string | null;
+  reviewUrl: string | null;
+  capacity: number;
+}
+
+export interface CampaignManageResponse {
+  data: CampaignAttendee[];
+}
