@@ -1,15 +1,14 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useDialog from "@/hooks/useDialog";
 import { BOARD_LIST, BoardType, CATEGORY_LIST } from "@/@types/board";
 import CategoryTab from "@/components/CategoryTab";
-import TitleInput from "../TitleInput";
 import Editor from "@/components/Editor";
+import TitleInput from "../TitleInput";
 import PostControlButtons from "../PostControlButtons";
 import styles from "./index.module.scss";
 
