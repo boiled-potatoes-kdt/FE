@@ -41,7 +41,7 @@ const PostForm = ({
     mutationFn: (post: FormData) => {
       return isEdit
         ? axios.patch(
-            `https://g6-server.dainreview.kr/api/post/${pathname}/${postId}`,
+            `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${pathname}/${postId}`,
             post,
             {
               headers: {
@@ -51,7 +51,7 @@ const PostForm = ({
             },
           )
         : axios.post(
-            `https://g6-server.dainreview.kr/api/post/${pathname}`,
+            `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${pathname}`,
             post,
             {
               headers: {

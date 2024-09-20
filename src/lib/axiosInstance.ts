@@ -7,7 +7,7 @@ import axios, {
 } from "axios";
 import { cookies, headers } from "next/headers";
 
-const BASE_URL = "https://g6-server.dainreview.kr/api";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const logOnDev = (message: string) => {
   if (process.env.NODE_ENV.trim() === "development") {
