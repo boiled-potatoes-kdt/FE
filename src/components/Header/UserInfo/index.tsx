@@ -34,8 +34,13 @@ const UserInfo: React.FC<IUserInfoProps> = ({
 
   const [isModal, setIsModal] = useState(false);
 
+  // 모달관련 이벤트
   const handleProfileClick = () => {
     setIsModal(!isModal);
+  };
+
+  const closeModal = () => {
+    setIsModal(false);
   };
 
   // 로그아웃 이벤트
@@ -44,13 +49,13 @@ const UserInfo: React.FC<IUserInfoProps> = ({
     if (confirmLogout) {
       sessionStorage.removeItem("login");
       setIsLogin(false);
+
+      await alert("로그아웃 되었습니다.");
+      window.location.reload();
     }
   };
 
-  const closeModal = () => {
-    setIsModal(false);
-  };
-
+  // 로그인 확인 이벤트
   const handleLogin = async () => {
     const confirmLogin = await confirm(
       "로그인이 필요한 서비스입니다.",
@@ -61,10 +66,12 @@ const UserInfo: React.FC<IUserInfoProps> = ({
     }
   };
 
+  // 마운트 여부
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
+  // 모달 외의 영역 클릭
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
